@@ -1,18 +1,26 @@
 #include "cub3d.h"
 
-static void	move_player_c(t_data *data, int dx, int dy)
+/**
+ * @brief move_player that works on continuous math (instead of discrete)
+ * 
+ * @param data 
+ */
+static void	move_player_c(t_data data)
 {
-	int	nx;
-	int	ny;
+	t_player	player;
+	t_map		map;
+	double		nx;
+	double		ny;
 
-	nx = data->game.player_x + dx;
-	ny = data->game.player_y + dy;
-	if (nx < 0 || nx >= data->map.width || ny < 0 || ny >= data->map.height)
+	player = data.player;
+	map = data.map;
+	nx = player.pos.x + player.dir.x;
+	ny = player.pos.y + player.dir.y;
+	if (nx < 0 || nx >= map.width || ny < 0 || ny >= map.height)
 		return ;
-	data->game.player_x = nx;
-	data->game.player_y = ny;
-	render(data);
-}
+	player.pos.x = nx;
+	player.pos.y = ny;
+} // TODO check how to handle movements towards edge -> move to edge??
 
 static void	move_player(t_data *data, int dx, int dy)
 {

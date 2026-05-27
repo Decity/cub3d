@@ -97,6 +97,7 @@ typedef struct s_data
 	void		*win;
 	t_map		map;
 	t_game		game;
+	t_player	player;
 }	t_data;
 
 /*
