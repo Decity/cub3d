@@ -11,6 +11,7 @@
 # define TILE_SIZE 20
 # define LINE_LEN 40
 # define ROT_SPEED 0.3
+# define MOV_SPEED 0.3
 
 /* Colors */
 # define COLOR_WALL   0xFFFFFF
