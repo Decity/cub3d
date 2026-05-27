@@ -58,8 +58,18 @@ typedef struct s_ray
 	t_step	step;
 	bool	hit;
 	int		side;
+	t_vec2	map_pos;
 }	t_ray;
 
+typedef struct s_player
+{
+	t_vec2	pos;
+	t_vec2	dir;
+	t_vec2	plane;
+	
+}	t_player;
+
+// update to take t_player
 typedef struct s_game
 {
 	int			player_x;
