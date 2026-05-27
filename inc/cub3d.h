@@ -1,6 +1,10 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+/*
+==== System Includes ====
+*/
+
 # include <unistd.h>   // read, write, close
 # include <fcntl.h>    // open
 # include <stdio.h>    // printf, perror
@@ -17,6 +21,58 @@
 # include "mlx.h"
 # include "../lib/libft/include/libft.h"
 
+/*
+==== Primitives ====
+types with no dependencies on other project types
+*/
+
+typedef struct s_vec2
+{
+	double	x;
+	double	y;
+}	t_vec2;
+
+typedef struct s_step
+{
+	int		x;
+	int		y;
+}	t_step;
+
+/*
+==== Enums ====
+*/
+
+typedef	enum e_heading
+{
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST
+}	t_heading;
+
+/*
+==== Subsystems ====
+*/
+
+typedef struct s_ray
+{
+	t_vec2	side_dist;
+	t_vec2	delta_dist;
+	t_step	step;
+	bool	hit;
+	int		side;
+	t_vec2	map_pos;
+}	t_ray;
+
+typedef struct s_player
+{
+	t_vec2	pos;
+	t_vec2	dir;
+	t_vec2	plane;
+	
+}	t_player;
+
+// update to take t_player
 typedef struct s_game
 {
 	int			player_x;
@@ -42,6 +98,10 @@ typedef struct s_map
 	t_textures	textures;
 }	t_map;
 
+/*
+==== Root ====
+*/
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -49,6 +109,10 @@ typedef struct s_data
 	t_map		map;
 	t_game		game;
 }	t_data;
+
+/*
+==== Function Prototypes ====
+*/
 
 /* init */
 /* init_data.c */
