@@ -1,8 +1,9 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "defs.h"
-# include "controls.h"
+/*
+==== System Includes ====
+*/
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -14,6 +15,27 @@
 # include <math.h>
 # include <sys/time.h>
 # include "mlx.h"
+# include "defs.h"
+# include "controls.h"
+
+/*
+==== Primitives ====
+types with no dependencies on other project types
+*/
+
+typedef struct s_vec2
+{
+	double	x;
+	double	y;
+}	t_vec2;
+
+/*
+==== Enums ====
+*/
+
+/*
+==== Subsystems ====
+*/
 
 typedef struct s_game
 {
@@ -32,6 +54,10 @@ typedef struct s_map
 	// textures
 }	t_map;
 
+/*
+==== Root ====
+*/
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -40,6 +66,9 @@ typedef struct s_data
 	t_game		game;
 }	t_data;
 
+/*
+==== Function Prototypes ====
+*/
 
 /* init.c */
 void	init(t_data *data);

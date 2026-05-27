@@ -19,5 +19,9 @@
 # define COLOR_PLAYER 0xFFFF00
 # define COLOR_WHITE  0xFFFFFF
 
+/* Map Tiles */
+# define EMPTY_SPACE 0
+# define WALL 1
+
 
 #endif
