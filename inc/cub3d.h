@@ -29,13 +29,36 @@ typedef struct s_vec2
 	double	y;
 }	t_vec2;
 
+typedef struct s_step
+{
+	int		x;
+	int		y;
+}	t_step;
+
 /*
 ==== Enums ====
 */
 
+typedef	enum e_heading
+{
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST
+}	t_heading;
+
 /*
 ==== Subsystems ====
 */
+
+typedef struct s_ray
+{
+	t_vec2	side_dist;
+	t_vec2	delta_dist;
+	t_step	step;
+	bool	hit;
+	int		side;
+}	t_ray;
 
 typedef struct s_game
 {
