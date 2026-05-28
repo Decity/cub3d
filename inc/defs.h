@@ -24,5 +24,9 @@
 # define EMPTY_SPACE 0
 # define WALL 1
 
+/* Relative Bearings */
+# define LEFT 0
+# define RIGHT 1
+
 
 #endif

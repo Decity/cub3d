@@ -5,22 +5,40 @@
  * 
  * @param data 
  */
-static void	move_player_c(t_player *player, t_map *map)
+static void	move_player_c(t_player *player, t_map *map, double dx, double dy)
 {
-	t_player	player;
-	t_map		map;
 	double		nx;
 	double		ny;
 
-	player = data.player;
-	map = data.map;
-	nx = player.pos.x + player.dir.x;
-	ny = player.pos.y + player.dir.y;
+	nx = player->pos.x + dx;
+	ny = player->pos.y + dy;
 	if (nx < 0 || nx >= map.width || ny < 0 || ny >= map.height)
 		return ;
-	player.pos.x = nx;
-	player.pos.y = ny;
+	player->pos.x = nx;
+	player->pos.y = ny;
 } // TODO check how to handle movements towards/past edge -> move to edge??
+
+static void	rotate_player_c(t_player *player, int side)
+{
+	double	rotation;
+	double	old_dir_x;
+	double	old_plane_x;
+	t_vec2	*dir;
+	t_vec2	*plane;
+
+	if (side == LEFT)
+		rotation = ROT_SPEED;
+	else
+		rotation = -ROT_SPEED;
+	dir = &player->dir;
+	old_dir_x = dir->x;
+	dir->x = dir->x * cos(rotation) - dir->y * sin(rotation);
+	dir->y = old_dir_x * sin(rotation) - dir->y * cos(rotation);
+	plane = &player->plane;
+	old_plane_x = plane.x;
+	plane->x = plane->x * cos(rotation) - plane->y * sin(rotation);
+	plane->y = old_plane_x * sin(rotation) - plane->y * cos(rotation);
+}
 
 static void	move_player(t_data *data, int dx, int dy)
 {
@@ -33,12 +51,6 @@ static void	move_player(t_data *data, int dx, int dy)
 		return ;
 	data->game.player_x = nx;
 	data->game.player_y = ny;
-	render(data);
-}
-
-static void	rotate_player_c(t_data *data, double d)
-{
-	data->game.angle += d;
 	render(data);
 }
 
