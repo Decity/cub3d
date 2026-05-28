@@ -20,7 +20,7 @@ static void	move_player_c(t_data data)
 		return ;
 	player.pos.x = nx;
 	player.pos.y = ny;
-} // TODO check how to handle movements towards edge -> move to edge??
+} // TODO check how to handle movements towards/past edge -> move to edge??
 
 static void	move_player(t_data *data, int dx, int dy)
 {

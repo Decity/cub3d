@@ -24,7 +24,7 @@ types with no dependencies on other project types
 */
 
 /**
- * @brief 2D vector using double-precision floating-point components
+ * @brief Represents 2D vector in continuous space
  */
 typedef struct s_vec2
 {
@@ -33,7 +33,7 @@ typedef struct s_vec2
 }	t_vec2;
 
 /**
- * @brief 2D vector using integer components
+ * @brief Represents 2D vector in discrete space (ie. grid)
  */
 typedef struct s_ivec2
 {
