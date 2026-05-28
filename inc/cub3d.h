@@ -23,17 +23,23 @@
 types with no dependencies on other project types
 */
 
+/**
+ * @brief 2D vector using double-precision floating-point components
+ */
 typedef struct s_vec2
 {
 	double	x;
 	double	y;
 }	t_vec2;
 
-typedef struct s_step
+/**
+ * @brief 2D vector using integer components
+ */
+typedef struct s_ivec2
 {
 	int		x;
 	int		y;
-}	t_step;
+}	t_ivec2;
 
 /*
 ==== Enums ====
@@ -55,7 +61,7 @@ typedef struct s_ray
 {
 	t_vec2	side_dist;
 	t_vec2	delta_dist;
-	t_step	step;
+	t_ivec2	step;
 	bool	hit;
 	int		side;
 	t_vec2	map_pos;
