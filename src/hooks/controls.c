@@ -18,6 +18,13 @@ static void	move_player_c(t_player *player, t_map *map, double dx, double dy)
 	player->pos.y = ny;
 } // TODO check how to handle movements towards/past edge -> move to edge??
 
+/**
+ * @brief rotate player function that takes LEFT/RIGHT side as argument and
+ *	rotates according to defined ROT_speed
+ * 
+ * @param player 
+ * @param side 
+ */
 static void	rotate_player_c(t_player *player, int side)
 {
 	double	rotation;
@@ -38,7 +45,7 @@ static void	rotate_player_c(t_player *player, int side)
 	old_plane_x = plane.x;
 	plane->x = plane->x * cos(rotation) - plane->y * sin(rotation);
 	plane->y = old_plane_x * sin(rotation) - plane->y * cos(rotation);
-}
+} //TODO think about making a seperate matrix rotation helper
 
 static void	move_player(t_data *data, int dx, int dy)
 {
