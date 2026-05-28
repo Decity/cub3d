@@ -5,7 +5,7 @@
  * 
  * @param data 
  */
-static void	move_player_c(t_data data)
+static void	move_player_c(t_player *player, t_map *map)
 {
 	t_player	player;
 	t_map		map;
@@ -33,6 +33,12 @@ static void	move_player(t_data *data, int dx, int dy)
 		return ;
 	data->game.player_x = nx;
 	data->game.player_y = ny;
+	render(data);
+}
+
+static void	rotate_player_c(t_data *data, double d)
+{
+	data->game.angle += d;
 	render(data);
 }
 

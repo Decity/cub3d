@@ -7,3 +7,10 @@
 		* render.c        — render(), draw_map(), draw_player(), draw_dir(), draw_plane()
 		* raycaster.c     — cast_rays(), init_ray(), dda_step(), draw_ray()
 		* controls.c      — on_key(), move_player(), rotate_player()
+
+
+
+
+* Movement
+	* Player movement currently triggers rendering, should decouple this
+	* Player movement is binary and exclusive, consider movement/strafing/rotation flags (player struct)
