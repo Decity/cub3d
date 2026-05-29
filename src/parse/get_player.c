@@ -28,8 +28,8 @@ static void	set_player_data(t_data *data, int x, int y)
 {
 	data->game.player_x = x;
 	data->game.player_y = y;
-	data->game.angle = get_angle(data->map.grid[y][x]);
-	data->map.grid[y][x] = '0'; // removes hardcoded player tile
+	data->game.angle = get_angle(data->map.grid[y * data->map.width + x]);
+	data->map.grid[y * data->map.width + x] = '0'; // removes hardcoded player tile
 }
 
 void	get_player(t_data *data)
@@ -43,7 +43,7 @@ void	get_player(t_data *data)
 		x = 0;
 		while (x < data->map.width)
 		{
-			if (is_player(data->map.grid[y][x]))
+			if (is_player(data->map.grid[y * data->map.width + x]))
 				set_player_data(data, x, y);
 			x++;
 		}

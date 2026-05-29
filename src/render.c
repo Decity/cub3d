@@ -39,7 +39,7 @@ static void	draw_map(t_data *data)
 		while (x < data->map.width)
 		{
 			draw_tile(data, x * TILE_SIZE, y * TILE_SIZE,
-				char_to_color(data->map.grid[y][x]));
+				char_to_color(data->map.grid[y * data->map.width + x]));
 			x++;
 		}
 		y++;

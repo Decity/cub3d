@@ -42,25 +42,20 @@ static int	get_map_width(char **cub_content, int start, int height)
 	return (w);
 }
 
-// returns the map line/row with padding (for consistent sized map rows)
-static char	*pad_row(const char *row, int width)
+// copies row into grid at row offset, pads remainder with spaces
+static void	fill_row(char *dst, const char *row, int width)
 {
-	char	*out;
-	int		len;
-	int		i;
+	int	len;
+	int	i;
 
 	len = (int)ft_strlen(row);
-	out = malloc(width + 1);
-	if (!out)
-		error_exit("memory allocation failed");
-	ft_memcpy(out, row, len);
+	if (len > width)
+		len = width;
+	ft_memcpy(dst, row, len);
 	i = len;
 	while (i < width)
-		out[i++] = ' ';
-	out[width] = '\0';
-	return (out);
+		dst[i++] = ' ';
 }
-
 
 void	get_map(t_data *data, char **cub_content)
 {
@@ -68,20 +63,21 @@ void	get_map(t_data *data, char **cub_content)
 	int	i;
 
 	start = 0;
-	while (cub_content[start] && !is_map_line(cub_content[start])) // pass non map content
+	while (cub_content[start] && !is_map_line(cub_content[start]))
 		start++;
-	
+
 	data->map.height = get_map_height(cub_content, start);
 	data->map.width = get_map_width(cub_content, start, data->map.height);
-	data->map.grid = ft_calloc(data->map.height + 1, sizeof(char *));
+	data->map.grid = malloc(data->map.width * data->map.height + 1);
 	if (!data->map.grid)
 		error_exit("memory allocation failed");
-
 
 	i = 0;
 	while (i < data->map.height)
 	{
-		data->map.grid[i] = pad_row(cub_content[start + i], data->map.width);
+		fill_row(data->map.grid + i * data->map.width,
+			cub_content[start + i], data->map.width);
 		i++;
 	}
+	data->map.grid[data->map.width * data->map.height] = '\0';
 }
