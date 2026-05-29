@@ -41,23 +41,13 @@ static void rotate_matrix(t_vec2 *mat, double rot)
 static void	rotate_player_c(t_player *player, int side)
 {
 	double	rotation;
-	double	old_dir_x;
-	double	old_plane_x;
-	t_vec2	*dir;
-	t_vec2	*plane;
 
 	if (side == LEFT)
 		rotation = ROT_SPEED;
 	else
 		rotation = -ROT_SPEED;
-	dir = &player->dir;
-	old_dir_x = dir->x;
-	dir->x = dir->x * cos(rotation) - dir->y * sin(rotation);
-	dir->y = old_dir_x * sin(rotation) - dir->y * cos(rotation);
-	plane = &player->plane;
-	old_plane_x = plane.x;
-	plane->x = plane->x * cos(rotation) - plane->y * sin(rotation);
-	plane->y = old_plane_x * sin(rotation) - plane->y * cos(rotation);
+	rotate_matrix(&player->dir, rotation);
+	rotate_matrix(&player->plane, rotation);
 } //TODO think about making a seperate matrix rotation helper
 
 static void	move_player(t_data *data, int dx, int dy)
