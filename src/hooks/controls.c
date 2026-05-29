@@ -27,7 +27,7 @@ static void rotate_matrix(t_vec2 *mat, double rot)
 	old_y = mat->y;
 
 	mat->x = mat->x * cos(rot) - mat->y * sin(rot);
-	mat->y = old_x * sin(rot) - mat->y * cos(rot);
+	mat->y = old_x * sin(rot) + mat->y * cos(rot);
 
 }
 
@@ -50,25 +50,25 @@ static void	rotate_player_c(t_player *player, int side)
 	rotate_matrix(&player->plane, rotation);
 } //TODO think about making a seperate matrix rotation helper
 
-static void	move_player(t_data *data, int dx, int dy)
-{
-	int	nx;
-	int	ny;
+// static void	move_player(t_data *data, int dx, int dy)
+// {
+// 	int	nx;
+// 	int	ny;
 
-	nx = data->game.player_x + dx;
-	ny = data->game.player_y + dy;
-	if (nx < 0 || nx >= data->map.width || ny < 0 || ny >= data->map.height)
-		return ;
-	data->game.player_x = nx;
-	data->game.player_y = ny;
-	render(data);
-}
+// 	nx = data->game.player_x + dx;
+// 	ny = data->game.player_y + dy;
+// 	if (nx < 0 || nx >= data->map.width || ny < 0 || ny >= data->map.height)
+// 		return ;
+// 	data->game.player_x = nx;
+// 	data->game.player_y = ny;
+// 	render(data);
+// }
 
-static void	rotate_player(t_data *data, double d)
-{
-	data->game.angle += d;
-	render(data);
-}
+// static void	rotate_player(t_data *data, double d)
+// {
+// 	data->game.angle += d;
+// 	render(data);
+// }
 
 int	on_key(int keycode, t_data *data)
 {
