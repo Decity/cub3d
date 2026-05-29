@@ -12,7 +12,7 @@ static void	move_player_c(t_player *player, t_map *map, double dx, double dy)
 
 	nx = player->pos.x + dx;
 	ny = player->pos.y + dy;
-	if (nx < 0 || nx >= map.width || ny < 0 || ny >= map.height)
+	if (nx < 0 || nx >= map->width || ny < 0 || ny >= map->height)
 		return ;
 	player->pos.x = nx;
 	player->pos.y = ny;
@@ -72,19 +72,26 @@ static void	rotate_player(t_data *data, double d)
 
 int	on_key(int keycode, t_data *data)
 {
+	t_player	*player;
+	t_map		*map;
+
+	player = &data->player;
+	map = &data->map;
+	
 	if (keycode == KEY_ESC)
 		close_window(data);
 	else if (keycode == KEY_W)
-		move_player(data, 0, -1);
+		move_player_c(player, map, 0, -MOV_SPEED);
 	else if (keycode == KEY_S)
-		move_player(data, 0, 1);
+		move_player_c(player, map, 0, MOV_SPEED);
 	else if (keycode == KEY_A)
-		move_player(data, -1, 0);
+		move_player_c(player, map, -MOV_SPEED, 0);
 	else if (keycode == KEY_D)
-		move_player(data, 1, 0);
+		move_player_c(player, map, MOV_SPEED, 0);
 	else if (keycode == KEY_Q || keycode == KEY_LEFT)
-		rotate_player(data, -ROT_SPEED);
+		rotate_player_c(player, LEFT);
 	else if (keycode == KEY_E || keycode == KEY_RIGHT)
-		rotate_player(data, ROT_SPEED);
+		rotate_player_c(player, RIGHT);
+	render(data);
 	return (0);
 }

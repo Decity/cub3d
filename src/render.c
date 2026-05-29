@@ -48,8 +48,8 @@ static void	draw_map(t_data *data)
 
 static void	draw_player(t_data *data)
 {
-	draw_tile(data, data->game.player_x * TILE_SIZE,
-		data->game.player_y * TILE_SIZE, COLOR_PLAYER);
+	draw_tile(data, data->player.pos.x * TILE_SIZE,
+		data->player.pos.y * TILE_SIZE, COLOR_PLAYER);
 }
 
 static void	draw_line(t_data *data, int *line_start, int *line_end)
@@ -80,13 +80,15 @@ static void	draw_line(t_data *data, int *line_start, int *line_end)
 
 static void	draw_dir(t_data *data)
 {
-	int	line_start[2];
-	int	line_end[2];
+	int			line_start[2];
+	int			line_end[2];
+	t_player	player;
 
-	line_start[0] = data->game.player_x * TILE_SIZE + TILE_SIZE / 2;
-	line_start[1] = data->game.player_y * TILE_SIZE + TILE_SIZE / 2;
-	line_end[0] = line_start[0] + (int)(cos(data->game.angle) * LINE_LEN);
-	line_end[1] = line_start[1] + (int)(sin(data->game.angle) * LINE_LEN);
+	player = data->player;
+	line_start[0] = player.pos.x * TILE_SIZE + TILE_SIZE / 2;
+	line_start[1] = player.pos.y * TILE_SIZE + TILE_SIZE / 2;
+	line_end[0] = (player.pos.x + player.dir.x) * TILE_SIZE + TILE_SIZE / 2;
+	line_end[1] = (player.pos.y + player.dir.y) * TILE_SIZE + TILE_SIZE / 2;
 
 	draw_line(data, line_start, line_end);
 }

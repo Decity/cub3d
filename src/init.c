@@ -63,9 +63,11 @@ static void	init_map(t_data *data)
 
 static void	init_player(t_data *data)
 {
-	data->game.player_x = data->map.width / 2;
-	data->game.player_y = data->map.height / 2;
-	data->game.angle = 0;
+	data.player.pos.x = data->map.width / 2;
+	data.player.pos.y = data->map.height / 2;
+	data.player.dir.x = 1;
+	data.player.dir.y = 1;
+	
 }
 
 void	init(t_data *data)

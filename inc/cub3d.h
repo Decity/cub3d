@@ -75,14 +75,6 @@ typedef struct s_player
 	
 }	t_player;
 
-// update to take t_player
-typedef struct s_game
-{
-	int			player_x;
-	int			player_y;
-	double		angle;
-}	t_game;
-
 typedef struct s_map
 {
 	const char	**grid;
