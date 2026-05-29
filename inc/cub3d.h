@@ -19,7 +19,7 @@
 # include "defs.h"
 # include "controls.h"
 # include "mlx.h"
-# include "../lib/libft/include/libft.h"
+# include "libft.h"
 
 /*
 ==== Primitives ====
@@ -90,7 +90,7 @@ typedef struct s_textures
 
 typedef struct s_map
 {
-	char		**grid;
+	char		*grid;
 	int			width;
 	int			height;
 	int			floor_color;
