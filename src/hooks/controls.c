@@ -1,19 +1,5 @@
 #include "cub3d.h"
 
-static void	move_player_c(t_data *data, int dx, int dy)
-{
-	int	nx;
-	int	ny;
-
-	nx = data->game.player_x + dx;
-	ny = data->game.player_y + dy;
-	if (nx < 0 || nx >= data->map.width || ny < 0 || ny >= data->map.height)
-		return ;
-	data->game.player_x = nx;
-	data->game.player_y = ny;
-	render(data);
-}
-
 static void	move_player(t_data *data, int dx, int dy)
 {
 	int	nx;
