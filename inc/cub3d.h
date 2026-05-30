@@ -19,7 +19,7 @@
 # include "defs.h"
 # include "controls.h"
 # include "mlx.h"
-# include "../lib/libft/include/libft.h"
+# include "../lib/libft/libft.h"
 
 /*
 ==== Primitives ====

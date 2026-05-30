@@ -17,6 +17,30 @@ static double	get_angle(char c)
 	if (c == 'E')
 		return (0.0);
 	return (M_PI);
+} // obsolete
+
+static void set_dir(t_vec2 *dir, char c)
+{
+	if (c == 'N')
+	{
+		dir->x = 0;
+		dir->y = 1;
+	}
+	else if (c == 'S')
+	{
+		dir->x = 0;
+		dir->y = -1;
+	}
+	else if (c == 'E')
+	{
+		dir->x = 1;
+		dir->y = 0;
+	}
+	else
+	{
+		dir->x = -1;
+		dir->y = 0;
+	}
 }
 
 static int	is_player(char c)
@@ -26,9 +50,10 @@ static int	is_player(char c)
 
 static void	set_player_data(t_data *data, int x, int y)
 {
-	data->game.player_x = x;
-	data->game.player_y = y;
-	data->game.angle = get_angle(data->map.grid[y][x]);
+	data->player.pos.x = x;
+	data->player.pos.y = y;
+	set_dir(&data->player.dir, data->map.grid[y][x]);
+	// player.dir initialisation
 	data->map.grid[y][x] = '0'; // removes hardcoded player tile
 }
 
