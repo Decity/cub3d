@@ -1,0 +1,9 @@
+#include "cub3d.h"
+
+void	error_exit(const char *msg)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd((char *)msg, 2);
+	ft_putstr_fd("\n", 2);
+	exit(EXIT_FAILURE);
+}

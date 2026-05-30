@@ -5,18 +5,21 @@
 ==== System Includes ====
 */
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <errno.h>
+# include <unistd.h>   // read, write, close
+# include <fcntl.h>    // open
+# include <stdio.h>    // printf, perror
+# include <stdlib.h>   // malloc, free, exit
+# include <string.h>   // strerror
+# include <errno.h>    // errno
+# include <math.h>     // math functions
+# include <sys/time.h> // gettimeofday
+
 # include <stdbool.h>
-# include <math.h>
-# include <sys/time.h>
-# include "mlx.h"
+
 # include "defs.h"
 # include "controls.h"
+# include "mlx.h"
+# include "../lib/libft/include/libft.h"
 
 /*
 ==== Primitives ====
@@ -75,14 +78,30 @@ typedef struct s_player
 	
 }	t_player;
 
+// update to take t_player
+typedef struct s_game
+{
+	int			player_x;
+	int			player_y;
+	double		angle;
+}	t_game;
+
+typedef struct s_textures
+{
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
+}	t_textures;
+
 typedef struct s_map
 {
-	const char	**grid;
+	char		**grid;
 	int			width;
 	int			height;
 	int			floor_color;
 	int			ceiling_color;
-	// textures
+	t_textures	textures;
 }	t_map;
 
 /*
@@ -101,17 +120,34 @@ typedef struct s_data
 ==== Function Prototypes ====
 */
 
-/* init.c */
-void	init(t_data *data);
+/* init */
+/* init_data.c */
+void	init_data(t_data *data);
+
+/* init_mlx.c */
+void	init_mlx(t_data *data);
+
+/* helpers/cub_split.c */
+char	**cub_split(const char *s);
+void	free_cub_content(char **arr);
+
+/* error.c */
+void	error_exit(const char *msg);
+
+/* validate_args.c */
+void	validate_args(int argc);
+
+/* parse */
+/* read_file.c */
+char	*read_file(const char *path);
 
 /* parse.c */
-int		parse(t_data *data);
+void	parse(t_data *data, const char *path);
 
-/* validate_params.c */
-int		validate_params(t_data *data);
-
-/* validate_map.c */
-int		validate_map(t_data *data);
+void	get_textures(t_data *data, char **lines);
+void	get_colors(t_data *data, char **lines);
+void	get_map(t_data *data, char **lines);
+void	get_player(t_data *data);
 
 /* run.c */
 int		run(t_data *data);
