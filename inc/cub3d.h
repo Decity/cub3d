@@ -104,14 +104,24 @@ typedef struct s_map
 	t_textures	textures;
 }	t_map;
 
+typedef struct s_mlx
+{
+	void	*p_mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_p_pixel;
+	int		line_len;
+	int		endian;
+}	t_mlx;
+
 /*
 ==== Root ====
 */
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
+	t_mlx		mlx;
 	t_map		map;
 	t_player	player;
 }	t_data;
@@ -143,7 +153,6 @@ char	*read_file(const char *path);
 
 /* parse.c */
 void	parse(t_data *data, const char *path);
-
 void	get_textures(t_data *data, char **lines);
 void	get_colors(t_data *data, char **lines);
 void	get_map(t_data *data, char **lines);
@@ -160,6 +169,10 @@ int		close_window(t_data *data);
 
 /* render.c */
 int		render(t_data *data);
+
+/* mlx_helpers */
+void	clear_mlx_buff(t_mlx *mlx);
+void	set_pixel(t_mlx *mlx, int x, int y, int colour);
 
 /* clean_up.c */
 int		clean_up(t_data *data);

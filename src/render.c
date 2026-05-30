@@ -20,7 +20,8 @@ static void	draw_tile(t_data *data, int x, int y, int color)
 		px = 0;
 		while (px < TILE_SIZE)
 		{
-			mlx_pixel_put(data->mlx, data->win, x + px, y + py, color);
+			//mlx_pixel_put(data->mlx.p_mlx, data->mlx.win, x + px, y + py, color);
+			set_pixel(&data->mlx, x + px, y + py, color);
 			px++;
 		}
 		py++;
@@ -71,9 +72,13 @@ static void	draw_line(t_data *data, int *line_start, int *line_end)
 	i = 0;
 	while (i <= steps)
 	{
-		mlx_pixel_put(data->mlx, data->win,
+		// mlx_pixel_put(data->mlx.p_mlx, data->mlx.win,
+		// 	line_start[0] + (int)(dx * i),
+		// 	line_start[1] + (int)(dy * i), COLOR_WHITE);
+		set_pixel(&data->mlx, 
 			line_start[0] + (int)(dx * i),
-			line_start[1] + (int)(dy * i), COLOR_WHITE);
+			line_start[1] + (int)(dy * i),
+			COLOR_WHITE);
 		i++;
 	}
 }
@@ -95,10 +100,14 @@ static void	draw_dir(t_data *data)
 
 int	render(t_data *data)
 {
-	mlx_clear_window(data->mlx, data->win);
+	t_mlx	*mlx;
+
+	mlx = &data->mlx;
+	//mlx_clear_window(mlx->p_mlx, mlx->win); // Check: redundant?
+	clear_mlx_buff(mlx);
 	draw_map(data);
 	draw_player(data);
 	draw_dir(data);
-	
+	mlx_put_image_to_window(mlx->p_mlx, mlx->win, mlx->img, 0, 0);
 	return (SUCCESS);
 }
