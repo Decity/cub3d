@@ -53,49 +53,6 @@ static void	draw_player(t_data *data)
 		data->player.pos.y * TILE_SIZE, COLOR_PLAYER);
 }
 
-void	draw_line(t_data *data, int *line_start, int *line_end)
-{
-	int		steps;
-	int		i;
-	double	dx;
-	double	dy;
-
-	steps = abs(line_end[0] - line_start[0]);
-	if (abs(line_end[1] - line_start[1]) > steps)
-		steps = abs(line_end[1] - line_start[1]);
-	if (steps == 0)
-		return ;
-	dx = (double)(line_end[0] - line_start[0]) / steps;
-	dy = (double)(line_end[1] - line_start[1]) / steps;
-
-
-	i = 0;
-	while (i <= steps)
-	{
-		// mlx_pixel_put(data->mlx.p_mlx, data->mlx.win,
-		// 	line_start[0] + (int)(dx * i),
-		// 	line_start[1] + (int)(dy * i), COLOR_WHITE);
-		set_pixel(&data->mlx, 
-			line_start[0] + (int)(dx * i),
-			line_start[1] + (int)(dy * i),
-			COLOR_WHITE);
-		i++;
-	}
-}
-
-void	draw_line_vec(t_data *data, t_vec2 start, t_vec2 end)
-{
-	int start_arr[2];
-	int end_arr[2];
-
-	start_arr[0] = start.x;
-	start_arr[1] = start.y;
-	end_arr[0] = end.x;
-	end_arr[1] = end.y;
-
-	draw_line(data, start_arr,  end_arr);
-}
-
 static void	draw_dir(t_data *data)
 {
 	int			line_start[2];

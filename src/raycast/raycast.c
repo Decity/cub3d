@@ -42,9 +42,9 @@ static void ray_initial(t_player player, t_ray *ray, double camera_x)
 	ray->dir.x =  player.dir.x + player.plane.x * camera_x;
 	ray->dir.y =  player.dir.y + player.plane.y * camera_x;
 
-	if (ray->dir.x < EPSILON)
+	if (ray->dir.x < EPSILON && ray->dir.x > -EPSILON)
 		ray->dir.x = EPSILON;
-	if (ray->dir.y < EPSILON)
+	if (ray->dir.y < EPSILON && ray->dir.y > -EPSILON)
 		ray->dir.y = EPSILON;
 	ray->delta_dist.x = fabs(1 / ray->dir.x); // protect against 0 div?
 	ray->delta_dist.y = fabs(1 / ray->dir.y); // protect against 0 div?
