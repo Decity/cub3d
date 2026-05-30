@@ -11,9 +11,10 @@
 # define TILE_SIZE 20
 # define LINE_LEN 40
 
-/* Player move/rotate speeds */
+/* Player config */
 # define ROT_SPEED 0.1
 # define MOV_SPEED 0.3
+# define FOV 0.66
 
 /* Colors */
 # define COLOR_WALL   0xFFFFFF
@@ -33,5 +34,13 @@
 # define LEFT 0
 # define RIGHT 1
 
+/* Math */
+# define EPSILON 1e-6
+
+/* Raycasting */
+# define HIT 1
+# define NO_HIT 0
+# define SIDE_EASTWEST 0
+# define SIDE_NORTHSOUTH 1
 
 #endif

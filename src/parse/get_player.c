@@ -53,6 +53,8 @@ static void	set_player_data(t_data *data, int x, int y)
 	data->player.pos.x = x;
 	data->player.pos.y = y;
 	set_dir(&data->player.dir, data->map.grid[y][x]);
+	data->player.plane.x = 0;
+	data->player.plane.y = FOV;
 	data->map.grid[y][x] = '0'; // removes hardcoded player tile
 }
 

@@ -53,7 +53,7 @@ static void	draw_player(t_data *data)
 		data->player.pos.y * TILE_SIZE, COLOR_PLAYER);
 }
 
-static void	draw_line(t_data *data, int *line_start, int *line_end)
+void	draw_line(t_data *data, int *line_start, int *line_end)
 {
 	int		steps;
 	int		i;
@@ -83,6 +83,19 @@ static void	draw_line(t_data *data, int *line_start, int *line_end)
 	}
 }
 
+void	draw_line_vec(t_data *data, t_vec2 start, t_vec2 end)
+{
+	int start_arr[2];
+	int end_arr[2];
+
+	start_arr[0] = start.x;
+	start_arr[1] = start.y;
+	end_arr[0] = end.x;
+	end_arr[1] = end.y;
+
+	draw_line(data, start_arr,  end_arr);
+}
+
 static void	draw_dir(t_data *data)
 {
 	int			line_start[2];
@@ -108,6 +121,7 @@ int	render(t_data *data)
 	draw_map(data);
 	draw_player(data);
 	draw_dir(data);
+	cast_rays(data);
 	mlx_put_image_to_window(mlx->p_mlx, mlx->win, mlx->img, 0, 0);
 	return (SUCCESS);
 }
