@@ -53,7 +53,6 @@ static void	set_player_data(t_data *data, int x, int y)
 	data->player.pos.x = x;
 	data->player.pos.y = y;
 	set_dir(&data->player.dir, data->map.grid[y][x]);
-	// player.dir initialisation
 	data->map.grid[y][x] = '0'; // removes hardcoded player tile
 }
 
