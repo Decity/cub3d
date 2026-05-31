@@ -33,7 +33,7 @@ void	free_cub_content(char **arr)
 
 
 // Basically ft split but it keeps empty lines.
-char	**cub_split(const char *s)
+char	**cub_split(t_data *data, const char *s)
 {
 	char	**out;
 	size_t	i;
@@ -42,7 +42,7 @@ char	**cub_split(const char *s)
 
 	out = ft_calloc(count_lines(s) + 1, sizeof(char *));
 	if (!out)
-		error_exit("memory allocation failed");
+		error_exit(data, "memory allocation failed");
 	i = 0;
 	start = 0;
 	end = 0;
@@ -52,7 +52,10 @@ char	**cub_split(const char *s)
 		{
 			out[i] = ft_substr(s, start, end - start);
 			if (!out[i++])
-				error_exit("memory allocation failed");
+			{
+				free_cub_content(out);
+				error_exit(data, "memory allocation failed");
+			}
 			if (s[end] == '\0')
 				return (out);
 			start = end + 1;

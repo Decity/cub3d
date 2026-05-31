@@ -4,8 +4,8 @@ void	init_mlx(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		error_exit("mlx_init failed");
+		error_exit(data, "mlx_init failed");
 	data->win = mlx_new_window(data->mlx, WINDOW_W, WINDOW_H, "cub3D");
 	if (!data->win)
-		error_exit("mlx_new_window failed");
+		error_exit(data, "mlx_new_window failed");
 }
