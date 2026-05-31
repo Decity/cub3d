@@ -1,30 +1,40 @@
 #include "cub3d.h"
 
-/**
- *	 math rune magic:
- *
- *   N = -PI/2	(-M_PI_2)
- *   S =  PI/2	(M_PI_2)
- *   W =  PI	(M_PI)
- *   E =  0		(0)
- */
-static double	get_angle(char c)
+static void	set_dir(t_vec2 *dir, char c)
 {
 	if (c == 'N')
-		return (-M_PI_2);
-	if (c == 'S')
-		return (M_PI_2);
-	if (c == 'E')
-		return (0.0);
-	return (M_PI);
+	{
+		dir->x = 0;
+		dir->y = 1;
+	}
+	else if (c == 'S')
+	{
+		dir->x = 0;
+		dir->y = -1;
+	}
+	else if (c == 'E')
+	{
+		dir->x = 1;
+		dir->y = 0;
+	}
+	else
+	{
+		dir->x = -1;
+		dir->y = 0;
+	}
 }
 
 static void	set_player_data(t_data *data, int x, int y)
 {
-	data->game.player_x = x;
-	data->game.player_y = y;
-	data->game.angle = get_angle(data->map.grid[y * data->map.width + x]);
-	data->map.grid[y * data->map.width + x] = '0'; // removes hardcoded player tile
+	int	idx;
+
+	idx = y * data->map.width + x;
+	data->player.pos.x = x;
+	data->player.pos.y = y;
+	set_dir(&data->player.dir, data->map.grid[idx]);
+	data->player.plane.x = 0;
+	data->player.plane.y = FOV;
+	data->map.grid[idx] = '0';
 }
 
 void	set_player_coords(t_data *data)
