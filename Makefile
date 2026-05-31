@@ -18,7 +18,7 @@ MLX_FLAGS	= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 LIBFT		= $(LIBFT_DIR)/libft.a
 LIBFT_FLAGS	= -L$(LIBFT_DIR) -lft
 
-INCLUDES	= -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)/include
+INCLUDES	= -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)
 
 all: $(NAME)
 

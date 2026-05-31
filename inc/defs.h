@@ -27,8 +27,8 @@
 //# define BITS_PER_PIXEL 32 // experimenting with dynamic value
 
 /* Map Tiles */
-# define EMPTY_SPACE 0
-# define WALL 1
+# define EMPTY_SPACE '0'
+# define WALL '1'
 
 /* Relative Bearings */
 # define LEFT 0

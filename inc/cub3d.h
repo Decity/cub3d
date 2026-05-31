@@ -19,7 +19,7 @@
 # include "defs.h"
 # include "controls.h"
 # include "mlx.h"
-# include "../lib/libft/libft.h"
+# include "libft.h"
 
 /*
 ==== Primitives ====
@@ -91,7 +91,7 @@ typedef struct s_textures
 
 typedef struct s_map
 {
-	char		**grid;
+	char		*grid;
 	int			width;
 	int			height;
 	int			floor_color;
@@ -117,13 +117,12 @@ typedef struct s_mlx
 typedef struct s_data
 {
 	t_mlx		mlx;
+	char		**cub_content;
 	t_map		map;
 	t_player	player;
 }	t_data;
 
-/*
-==== Function Prototypes ====
-*/
+/* ==== Function Prototypes ==== */
 
 /* init */
 /* init_data.c */
@@ -133,7 +132,7 @@ void	init_data(t_data *data);
 void	init_mlx(t_data *data);
 
 /* helpers/cub_split.c */
-char	**cub_split(const char *s);
+char	**cub_split(t_data *data, const char *s);
 void	free_cub_content(char **arr);
 
 /* helpers/mlx_helper.c */
@@ -145,21 +144,52 @@ bool in_bounds(int x, int y, t_map *map);
 bool is_wall(int x, int y, t_map *map);
 
 /* error.c */
-void	error_exit(const char *msg);
+void	error_exit(t_data *data, const char *msg);
 
-/* validate_args.c */
-void	validate_args(int argc);
+/* ============= */
+/* == parsing == */
+/* ============= */
 
-/* parse */
 /* read_file.c */
-char	*read_file(const char *path);
+char	*read_file(t_data *data, const char *path);
 
 /* parse.c */
 void	parse(t_data *data, const char *path);
-void	get_textures(t_data *data, char **lines);
-void	get_colors(t_data *data, char **lines);
-void	get_map(t_data *data, char **lines);
-void	get_player(t_data *data);
+
+/* parse_chars.c */
+bool	is_valid_map_char(char c);
+bool	is_player_tile(char c);
+
+/* map_bounds.c */
+bool	is_map_line(const char *s);
+void	get_map_bounds(t_data *data, char **lines, int *first, int *last);
+void	validate_map_block(t_data *data, char **lines, int first, int last);
+
+/* parse_cub_params.c */
+void	parse_cub_params(t_data *data, char **lines, int map_start);
+
+/* set_texture.c */
+bool	set_texture(t_data *data, const char *line);
+
+/* validate_texture_paths.c */
+void	validate_texture_paths(t_data *data);
+
+/* set_color.c */
+bool	set_color(t_data *data, const char *line);
+
+/* parse_map_data.c */
+void	parse_map_data(t_data *data, char **lines, int start, int end);
+
+/* validate_map.c */
+void	validate_map(t_data *data);
+
+/* validate_walls.c */
+void	validate_walls(t_data *data);
+
+/* set_player_coords.c */
+void	set_player_coords(t_data *data);
+
+/* ============= */
 
 /* run.c */
 int		run(t_data *data);

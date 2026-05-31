@@ -24,7 +24,7 @@ bool is_wall(int x, int y, t_map *map)
 	if (!in_bounds(x, y, map))
 		return (true);
 	
-	if (map->grid[y][x] == WALL)
+	if (map->grid[y * map->width + x] == WALL)
 		return (true);
 	return (false);
 }
