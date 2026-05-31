@@ -1,9 +1,11 @@
 #include "cub3d.h"
 
-void	error_exit(const char *msg)
+void	error_exit(t_data *data, const char *msg)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd((char *)msg, 2);
 	ft_putstr_fd("\n", 2);
+	if (data)
+		clean_up(data);
 	exit(EXIT_FAILURE);
 }
