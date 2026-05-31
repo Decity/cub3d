@@ -19,24 +19,30 @@
 # include "defs.h"
 # include "controls.h"
 # include "mlx.h"
-# include "../lib/libft/include/libft.h"
+# include "../lib/libft/libft.h"
 
 /*
 ==== Primitives ====
 types with no dependencies on other project types
 */
 
+/**
+ * @brief Represents 2D vector in continuous space
+ */
 typedef struct s_vec2
 {
 	double	x;
 	double	y;
 }	t_vec2;
 
-typedef struct s_step
+/**
+ * @brief Represents 2D vector in discrete space (ie. grid)
+ */
+typedef struct s_ivec2
 {
 	int		x;
 	int		y;
-}	t_step;
+}	t_ivec2;
 
 /*
 ==== Enums ====
@@ -58,10 +64,13 @@ typedef struct s_ray
 {
 	t_vec2	side_dist;
 	t_vec2	delta_dist;
-	t_step	step;
+	t_vec2	dir;
+	t_vec2	hit_pos;
+	t_ivec2	step;
 	bool	hit;
 	int		side;
-	t_vec2	map_pos;
+	t_ivec2	map_pos;
+	double	perp_wall_dist;
 }	t_ray;
 
 typedef struct s_player
@@ -71,14 +80,6 @@ typedef struct s_player
 	t_vec2	plane;
 	
 }	t_player;
-
-// update to take t_player
-typedef struct s_game
-{
-	int			player_x;
-	int			player_y;
-	double		angle;
-}	t_game;
 
 typedef struct s_textures
 {
@@ -98,16 +99,26 @@ typedef struct s_map
 	t_textures	textures;
 }	t_map;
 
+typedef struct s_mlx
+{
+	void	*p_mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_p_pixel;
+	int		line_len;
+	int		endian;
+}	t_mlx;
+
 /*
 ==== Root ====
 */
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
+	t_mlx		mlx;
 	t_map		map;
-	t_game		game;
+	t_player	player;
 }	t_data;
 
 /*
@@ -125,6 +136,14 @@ void	init_mlx(t_data *data);
 char	**cub_split(const char *s);
 void	free_cub_content(char **arr);
 
+/* helpers/mlx_helper.c */
+void	clear_mlx_buff(t_mlx *mlx);
+void	set_pixel(t_mlx *mlx, int x, int y, int colour);
+
+/* helpers/checker.c */
+bool in_bounds(int x, int y, t_map *map);
+bool is_wall(int x, int y, t_map *map);
+
 /* error.c */
 void	error_exit(const char *msg);
 
@@ -137,7 +156,6 @@ char	*read_file(const char *path);
 
 /* parse.c */
 void	parse(t_data *data, const char *path);
-
 void	get_textures(t_data *data, char **lines);
 void	get_colors(t_data *data, char **lines);
 void	get_map(t_data *data, char **lines);
@@ -155,7 +173,19 @@ int		close_window(t_data *data);
 /* render.c */
 int		render(t_data *data);
 
+/* render/draw_line.c */
+void	draw_line(t_data *data, int *line_start, int *line_end);
+void	draw_line_vec(t_data *data, t_vec2 start, t_vec2 end);
+
 /* clean_up.c */
 int		clean_up(t_data *data);
+
+/* movement.c */
+void	rotate_player_c(t_player *player, int side);
+void	rotate_matrix(t_vec2 *mat, double rot);
+void	move_player_c(t_player *player, t_map *map, double dx, double dy);
+
+/* raycast/raycast.c */
+void	cast_rays(t_data *dat);
 
 #endif

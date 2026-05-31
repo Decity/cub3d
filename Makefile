@@ -1,7 +1,7 @@
 NAME		= cub3D
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -g -Wall -Wextra #-Werror
 
 SRC_DIR		= src
 OBJ_DIR		= obj
@@ -15,8 +15,8 @@ OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 MLX			= $(MLX_DIR)/libmlx.a
 MLX_FLAGS	= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-LIBFT		= $(LIBFT_DIR)/build/libft.a
-LIBFT_FLAGS	= -L$(LIBFT_DIR)/build -lft
+LIBFT		= $(LIBFT_DIR)/libft.a
+LIBFT_FLAGS	= -L$(LIBFT_DIR) -lft
 
 INCLUDES	= -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)/include
 
