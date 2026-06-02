@@ -112,7 +112,7 @@ void single_ray(t_data *data, t_ray *ray, double camera_x)
 	ray_initial(player, ray, camera_x);
 	calc_ray_step(ray, &player);
 	perform_dda(data, ray);
-	printf("hit: %f %f\n", ray->hit_pos.x, ray->hit_pos.y);
+	//printf("hit: %f %f\n", ray->hit_pos.x, ray->hit_pos.y);
 	draw_line_vec(data, data->player.pos, ray->hit_pos);
 	// render column placeholder
 	
