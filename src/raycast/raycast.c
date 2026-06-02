@@ -102,8 +102,8 @@ void draw_ray(t_data *data, t_ray *ray)
 
 	player.x = data->player.pos.x * TILE_SIZE + TILE_SIZE / 2;
 	player.y = data->player.pos.y * TILE_SIZE + TILE_SIZE / 2;
-	ray_hit.x = ray->hit_pos.x * TILE_SIZE + TILE_SIZE / 2;
-	ray_hit.y = ray->hit_pos.y * TILE_SIZE + TILE_SIZE / 2;
+	ray_hit.x = ray->hit_pos.x * TILE_SIZE;
+	ray_hit.y = ray->hit_pos.y * TILE_SIZE;
 
 	draw_line_ivec(data, player, ray_hit);
 }
