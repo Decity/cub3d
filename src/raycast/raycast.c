@@ -106,7 +106,7 @@ void draw_ray(t_data *data, t_ray *ray)
 	ray_hit.y = ray->hit_pos.y * TILE_SIZE;
 
 	
-	draw_line_ivec(data, player, ray_hit);
+	draw_line_ivec(data, player, ray_hit, COLOR_TEAL);
 }
 
 // calc side_dist

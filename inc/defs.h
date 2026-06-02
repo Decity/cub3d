@@ -22,6 +22,7 @@
 # define COLOR_BLACK  0x000000
 # define COLOR_PLAYER 0xFFFF00
 # define COLOR_WHITE  0xFFFFFF
+# define COLOR_TEAL  0x00FFFF
 
 /* Rendering */
 //# define BITS_PER_PIXEL 32 // experimenting with dynamic value

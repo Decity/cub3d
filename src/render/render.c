@@ -65,7 +65,7 @@ static void	draw_dir(t_data *data)
 	line_end[0] = (player.pos.x + player.dir.x) * TILE_SIZE + TILE_SIZE / 2;
 	line_end[1] = (player.pos.y + player.dir.y) * TILE_SIZE + TILE_SIZE / 2;
 
-	draw_line(data, line_start, line_end);
+	draw_line(data, line_start, line_end, COLOR_WHITE);
 }
 
 int	render(t_data *data)
