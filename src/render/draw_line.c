@@ -38,7 +38,7 @@ void	draw_line_ivec(t_data *data, t_ivec2 start, t_ivec2 end, int colour)
 	end_arr[0] = end.x;
 	end_arr[1] = end.y;
 
-	draw_line(data, start_arr,  end_arr, int colour);
+	draw_line(data, start_arr,  end_arr, colour);
 } // think about whether to pass t_vec2 or directly typed t_ivec2
 
 void	draw_v_line(t_mlx *mlx, t_ivec2 p, int len, int colour)
