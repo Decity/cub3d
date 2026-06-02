@@ -32,8 +32,8 @@ static void	set_player_data(t_data *data, int x, int y)
 	data->player.pos.x = x;
 	data->player.pos.y = y;
 	set_dir(&data->player.dir, data->map.grid[idx]);
-	data->player.plane.x = 0;
-	data->player.plane.y = FOV;
+	data->player.plane.x = FOV;
+	data->player.plane.y = 0;
 	data->map.grid[idx] = '0';
 }
 
