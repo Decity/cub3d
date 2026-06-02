@@ -28,15 +28,15 @@ void	draw_line(t_data *data, int *line_start, int *line_end)
 	}
 }
 
-void	draw_line_vec(t_data *data, t_vec2 start, t_vec2 end)
+void	draw_line_ivec(t_data *data, t_ivec2 start, t_ivec2 end)
 {
 	int start_arr[2];
 	int end_arr[2];
 
-	start_arr[0] = (int)start.x;
-	start_arr[1] = (int)start.y;
-	end_arr[0] = (int)end.x;
-	end_arr[1] = (int)end.y;
+	start_arr[0] = start.x;
+	start_arr[1] = start.y;
+	end_arr[0] = end.x;
+	end_arr[1] = end.y;
 
 	draw_line(data, start_arr,  end_arr);
 } // think about whether to pass t_vec2 or directly typed t_ivec2

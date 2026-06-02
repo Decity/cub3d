@@ -205,7 +205,7 @@ int		render(t_data *data);
 
 /* render/draw_line.c */
 void	draw_line(t_data *data, int *line_start, int *line_end);
-void	draw_line_vec(t_data *data, t_vec2 start, t_vec2 end);
+void	draw_line_ivec(t_data *data, t_ivec2 start, t_ivec2 end);
 
 /* clean_up.c */
 int		clean_up(t_data *data);

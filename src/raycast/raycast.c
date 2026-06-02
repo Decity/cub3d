@@ -95,6 +95,19 @@ static void perform_dda(t_data *data, t_ray *ray)
 	ray->hit_pos.y = data->player.pos.y + ray->perp_wall_dist * ray->dir.y;
 }
 
+void draw_ray(t_data *data, t_ray *ray)
+{
+	t_ivec2 player;
+	t_ivec2 ray_hit;
+
+	player.x = data->player.pos.x * TILE_SIZE;
+	player.y = data->player.pos.y * TILE_SIZE;
+	ray_hit.x = ray->hit_pos.x * TILE_SIZE;
+	ray_hit.y = ray->hit_pos.y * TILE_SIZE;
+
+	draw_line_ivec(data, player, ray_hit);
+}
+
 // calc side_dist
 // calc delta_dist
 // calc step
@@ -113,7 +126,7 @@ void single_ray(t_data *data, t_ray *ray, double camera_x)
 	calc_ray_step(ray, &player);
 	perform_dda(data, ray);
 	//printf("hit: %f %f\n", ray->hit_pos.x, ray->hit_pos.y);
-	draw_line_vec(data, data->player.pos, ray->hit_pos);
+	draw_ray(data, ray);
 	// render column placeholder
 	
 }
