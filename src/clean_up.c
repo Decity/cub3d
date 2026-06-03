@@ -19,3 +19,7 @@ int	clean_up(t_data *data)
 	data->map.grid = NULL;
 	return (SUCCESS);
 }
+
+
+
+

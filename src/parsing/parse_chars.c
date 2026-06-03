@@ -5,7 +5,7 @@
 bool	is_valid_map_char(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == 'S'
-		|| c == 'E' || c == 'W' || c == ' ');
+		|| c == 'E' || c == 'W' || c == ' ' || c == '\t' || c == '\v');
 }
 
 /* True if c is a player spawn tile (N/S/E/W). */

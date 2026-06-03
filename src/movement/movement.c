@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/30 14:52:51 by crabin            #+#    #+#             */
-/*   Updated: 2026/05/30 14:56:50 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/03 20:19:53 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,35 @@ void	move_player_c(t_player *player, t_map *map, double dx, double dy)
 	player->pos.x = nx;
 	player->pos.y = ny;
 } // TODO check how to handle movements towards/past edge -> move to edge??
+
+void perpendicular_vector(t_vec2 vec, t_vec2 *perp)
+{
+	perp->x = - vec.y;
+	perp->y = vec.x;
+}
+
+void	move_player_dir(t_player *player, t_map *map, double dx, double dy)
+{
+	t_vec2	move_vec;
+	t_vec2	perp_dir;
+	double nx;
+	double ny;
+
+	move_vec.x = player->dir.x * dx;
+	move_vec.y = player->dir.y * dx;
+
+	perpendicular_vector(player->dir, &perp_dir);
+	move_vec.x += perp_dir.x * dy;
+	move_vec.y += perp_dir.y * dy;
+
+	//printf("dx %f dy %f movx %f movy %f\n", dx, dy, move_vec.x, move_vec.y);
+	nx = player->pos.x + move_vec.x;
+	ny = player->pos.y + move_vec.y;
+	if (nx < 0 || nx >= map->width || ny < 0 || ny >= map->height)
+		return ;
+	player->pos.x += move_vec.x;
+	player->pos.y += move_vec.y;
+}
 
 /**
  * @brief rotates a 2-dimentional matrix by <rot> radians around origin (0,0)

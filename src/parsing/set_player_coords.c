@@ -5,12 +5,12 @@ static void	set_dir(t_vec2 *dir, char c)
 	if (c == 'N')
 	{
 		dir->x = 0;
-		dir->y = 1;
+		dir->y = -1;
 	}
 	else if (c == 'S')
 	{
 		dir->x = 0;
-		dir->y = -1;
+		dir->y = 1;
 	}
 	else if (c == 'E')
 	{
