@@ -1,5 +1,6 @@
 # Project specific
 cub3D
+lib/minilibx-linux/test/mlx-test
 
 # Prerequisites
 *.d

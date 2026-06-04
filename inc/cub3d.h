@@ -223,5 +223,6 @@ void	move_player_dir(t_player *player, t_map *map, double dx, double dy);
 void	cast_rays(t_data *dat);
 void	perform_dda(t_data *data, t_ray *ray, double camera_x);
 void	draw_wall(t_data *data, int x, t_ray *ray);
+void	draw_floor_ceiling(t_data *data);
 
 #endif
