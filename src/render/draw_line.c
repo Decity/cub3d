@@ -1,7 +1,7 @@
 
 # include "cub3d.h"
 
-void	draw_line(t_data *data, int *line_start, int *line_end)
+void	draw_line(t_data *data, int *line_start, int *line_end, int colour)
 {
 	int		steps;
 	int		i;
@@ -23,22 +23,22 @@ void	draw_line(t_data *data, int *line_start, int *line_end)
 		set_pixel(&data->mlx, 
 			line_start[0] + (int)(dx * i),
 			line_start[1] + (int)(dy * i),
-			COLOR_WHITE);
+			colour);
 		i++;
 	}
 }
 
-void	draw_line_vec(t_data *data, t_vec2 start, t_vec2 end)
+void	draw_line_ivec(t_data *data, t_ivec2 start, t_ivec2 end, int colour)
 {
 	int start_arr[2];
 	int end_arr[2];
 
-	start_arr[0] = (int)start.x;
-	start_arr[1] = (int)start.y;
-	end_arr[0] = (int)end.x;
-	end_arr[1] = (int)end.y;
+	start_arr[0] = start.x;
+	start_arr[1] = start.y;
+	end_arr[0] = end.x;
+	end_arr[1] = end.y;
 
-	draw_line(data, start_arr,  end_arr);
+	draw_line(data, start_arr,  end_arr, colour);
 } // think about whether to pass t_vec2 or directly typed t_ivec2
 
 void	draw_v_line(t_mlx *mlx, t_ivec2 p, int len, int colour)

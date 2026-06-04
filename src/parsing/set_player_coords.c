@@ -5,12 +5,12 @@ static void	set_dir(t_vec2 *dir, char c)
 	if (c == 'N')
 	{
 		dir->x = 0;
-		dir->y = 1;
+		dir->y = -1;
 	}
 	else if (c == 'S')
 	{
 		dir->x = 0;
-		dir->y = -1;
+		dir->y = 1;
 	}
 	else if (c == 'E')
 	{
@@ -24,6 +24,13 @@ static void	set_dir(t_vec2 *dir, char c)
 	}
 }
 
+static void init_camera_plane(t_data *data)
+{
+	data->player.plane.x = - data->player.dir.y * FOV;
+	data->player.plane.y = data->player.dir.x * FOV;
+
+}
+
 static void	set_player_data(t_data *data, int x, int y)
 {
 	int	idx;
@@ -32,8 +39,7 @@ static void	set_player_data(t_data *data, int x, int y)
 	data->player.pos.x = x;
 	data->player.pos.y = y;
 	set_dir(&data->player.dir, data->map.grid[idx]);
-	data->player.plane.x = 0;
-	data->player.plane.y = FOV;
+	init_camera_plane(data);
 	data->map.grid[idx] = '0';
 }
 

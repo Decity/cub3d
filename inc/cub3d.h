@@ -204,8 +204,11 @@ int		close_window(t_data *data);
 int		render(t_data *data);
 
 /* render/draw_line.c */
-void	draw_line(t_data *data, int *line_start, int *line_end);
-void	draw_line_vec(t_data *data, t_vec2 start, t_vec2 end);
+void	draw_line(t_data *data, int *line_start, int *line_end, int colour);
+void	draw_line_ivec(t_data *data, t_ivec2 start, t_ivec2 end, int colour);
+void	draw_v_line(t_mlx *mlx, t_ivec2 p, int len, int colour);
+void	draw_h_line(t_mlx *mlx, t_ivec2 p, int len, int colour);
+void 	draw_box(t_mlx *mlx, t_ivec2 origin, t_ivec2 size, int colour);
 
 /* clean_up.c */
 int		clean_up(t_data *data);
@@ -214,8 +217,11 @@ int		clean_up(t_data *data);
 void	rotate_player_c(t_player *player, int side);
 void	rotate_matrix(t_vec2 *mat, double rot);
 void	move_player_c(t_player *player, t_map *map, double dx, double dy);
+void	move_player_dir(t_player *player, t_map *map, double dx, double dy);
 
 /* raycast/raycast.c */
 void	cast_rays(t_data *dat);
+void	perform_dda(t_data *data, t_ray *ray, double camera_x);
+void	draw_wall(t_data *data, int x, t_ray *ray);
 
 #endif
