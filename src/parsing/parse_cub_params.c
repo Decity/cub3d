@@ -28,8 +28,15 @@ static void	check_for_missing_params(t_data *data)
  */
 void	parse_cub_params(t_data *data, char **lines, int map_start)
 {
-	int	i;
+	int			i;
+	t_texture	*default_texture;
 
+	i = 0;
+	while (i < 4)
+	{
+		default_texture = &data->map.default_texture[i];
+		ft_bzero((void *)default_texture, sizeof(t_texture));
+	}
 	i = 0;
 	while (i < map_start)
 	{

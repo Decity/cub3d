@@ -12,5 +12,10 @@
 
 ## Resources
 
--
+- Knowledge
+	- Raycasting
+		- https://lodev.org/cgtutor/raycasting.html
+
+- PNGs
+	- https://opengameart.org/content/64x-textures-an-overlays
 

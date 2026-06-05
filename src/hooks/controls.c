@@ -15,18 +15,22 @@ int	on_key(int keycode, t_data *data)
 		close_window(data);
 	if (keycode == KEY_W)
 	{
+		//printf("W\n");
 		move.x += MOV_SPEED;
 	}
 	if (keycode == KEY_S)
 	{
+		//printf("S\n");
 		move.x += -MOV_SPEED;
 	}
 	if (keycode == KEY_A)
 	{
+		//printf("A\n");
 		move.y += - MOV_SPEED;
 	}
 	if (keycode == KEY_D)
 	{
+		//printf("D\n");
 		move.y += MOV_SPEED;
 	}
 	move_player_dir(player, map, move.x, move.y);

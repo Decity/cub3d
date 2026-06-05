@@ -81,13 +81,16 @@ typedef struct s_player
 	
 }	t_player;
 
-typedef struct s_textures
+typedef struct s_texture
 {
-	char		*north;
-	char		*south;
-	char		*west;
-	char		*east;
-}	t_textures;
+	void	*img;
+	char	*path;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		endian;
+}	t_texture;
 
 typedef struct s_map
 {
@@ -96,7 +99,7 @@ typedef struct s_map
 	int			height;
 	int			floor_color;
 	int			ceiling_color;
-	t_textures	textures;
+	t_texture	default_texture[4];
 }	t_map;
 
 typedef struct s_mlx

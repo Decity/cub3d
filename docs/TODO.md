@@ -2,6 +2,8 @@
 
 ## Parsing
 
+	- [] check texture paths to ensure correct file format is supported (xpm or whatever we chose)
+
 ## Rendering
 	- [x] Line drawing
 	- [x] Write to img buffer rather than screen every time, flush/cycle
