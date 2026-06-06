@@ -36,6 +36,8 @@ void put_col_texture(t_data *data, t_texture *t, t_column *c)
 	int		colour;
 
 	scale = (double)t->height / (double)c->len;
+	if (scale < EPSILON)
+		scale = EPSILON;
 	i = 0;
 	mlx = &data->mlx;
 	while (c->start.y + i < 0)
