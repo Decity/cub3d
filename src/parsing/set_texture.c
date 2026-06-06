@@ -53,8 +53,8 @@ static void	assign_texture(t_data *data, t_texture *texture, const char *line)
 		error_exit(data, "duplicate texture identifier");
 
 	texture->path = get_texture_path(data, line);
-	if (init_texture(data, texture) == FAILURE)
-		error_exit(data, "texture init failed");
+	// if (init_texture(data, texture) == FAILURE)
+	// 	error_exit(data, "texture init failed");
 }
 
 /* If line starts with NO/SO/WE/EA + space, stores the texture and returns true.

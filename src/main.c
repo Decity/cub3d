@@ -18,8 +18,8 @@ int	main(int argc, char **argv)
 
 	init_data(&data);
 	validate_args(&data, argc, argv); // validate_args after init so exit_error can be called
-	parse(&data, argv[1]);
 	init_mlx(&data);
+	parse(&data, argv[1]);
 	run(&data);
 	clean_up(&data);
 	return (EXIT_SUCCESS);

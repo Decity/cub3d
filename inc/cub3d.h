@@ -97,6 +97,8 @@ typedef struct s_column
 	double	hit_pos;
 }	t_column;
 
+
+// TODO make an image buffer struct, there is repitition between mlx and texture
 typedef struct s_texture
 {
 	void	*img;
