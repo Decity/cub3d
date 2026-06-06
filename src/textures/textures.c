@@ -43,7 +43,11 @@ void put_col_texture(t_data *data, t_texture *t, t_column *c)
 	while (i < c->len)
 	{
 		relative_y = (int)(i / c->len);
-		colour = get_colour_texture(t, (int)(t->width * scale), relative_y);
+		colour = get_colour_texture(
+				t, 
+				(int)(t->width * c->hit_pos), 
+				(int)(t->height *relative_y)
+			);
 		set_pixel(mlx, c->start.x, c->start.y + i, colour);
 		i++;
 	}
