@@ -3,7 +3,7 @@
 
 /* General */
 # define SUCCESS 0
-# define FAIL 1
+# define FAILURE 1
 
 /* Window Params */
 # define WINDOW_W 1280

@@ -12,8 +12,8 @@ static void	check_path(t_data *data, const char *path)
 
 void	validate_texture_paths(t_data *data)
 {
-	check_path(data, data->map.textures.north);
-	check_path(data, data->map.textures.south);
-	check_path(data, data->map.textures.east);
-	check_path(data, data->map.textures.west);
+	check_path(data, data->map.default_texture[NORTH].path);
+	check_path(data, data->map.default_texture[EAST].path);
+	check_path(data, data->map.default_texture[SOUTH].path);
+	check_path(data, data->map.default_texture[WEST].path);
 }

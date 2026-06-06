@@ -8,17 +8,28 @@
 	- [x] Line drawing
 	- [x] Write to img buffer rather than screen every time, flush/cycle
 	- [x] Draw/flush on refresh/cycle -> not on player movement
-	- [x] Object detection/precedence/occlusion				{2.Clem}
-	- [x] Camera plane										{2.Clem}
+	- [x] Object detection/precedence/occlusion
+	- [x] Camera plane
 	- [ ] Texture mapping
 	- [x] Floor/Ceiling casting
 
 ## Map
-	- [x] Continuous movement representation				{1.Clem}
+	- [x] Continuous movement representation				
 
 ## Player
-	- [x] Continuous movement representation				{1.Clem}
-	- [x] Continuous rotation								{1.Clem}
-	- [ ] Calculate how much to rot/mov depending on FPS	{3.Clem}
+	- [x] Continuous movement representation
+	- [x] Continuous rotation
+	- [ ] Calculate how much to rot/mov depending on FPS
 	- [x] Collision detection
 
+## Cleanup
+
+	- [] MLX/Textures
+
+## Extras
+
+	- [] Minimap
+	- [] Enemies
+	- [] Doors
+	- [] Fog
+	- [] Animations

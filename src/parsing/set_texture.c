@@ -1,23 +1,34 @@
 #include "cub3d.h"
 
+
+/**
+ * @brief 
+ * Opens .xpm file pointed to by texture->path, loads texture into memory and 
+ * initalises struct members, saves pointer to start of pixel buffer into 
+ * texture->addr
+ * 
+ * @param data 
+ * @param texture pointer to struct holding texture data
+ */
 static int init_texture(t_data	*data, t_texture *texture)
 {
 	texture->img = mlx_xpm_file_to_image(
 		data->mlx.p_mlx,
 		texture->path,
-		&texture.width,
-		&texture.height
+		&texture->width,
+		&texture->height
 	);
 	if (!texture->img)
 		return (FAILURE);
 	texture->addr = mlx_get_data_addr(
 		texture->img,
-		texture->bpp,
-		texture->line_len,
-		texture->endian
+		&texture->bit_pp,
+		&texture->line_len,
+		&texture->endian
 	);
 	if (!texture->addr)
 		return (FAILURE);
+	texture->byt_pp = texture->bit_pp / 8;
 	return (SUCCESS);
 }
 

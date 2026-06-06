@@ -10,11 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int put_texture(t_data *data)
+# include "cub3d.h"
+
+char *get_pix_texture(t_texture *t, int x, int y)
 {
-	int w;
-	int h;
+	return (t->addr + (t->byt_pp * x) + (t->line_len * y));
+}
 
-	data->mlx.img
+unsigned int get_colour_texture(t_texture *t, int x, int y)
+{
+	char *pixel;
 
+	pixel = get_pix_texture(t, x, y);
+	return (*(unsigned int *)pixel);
+}
+
+
+
+void put_col_texture(t_data *data, t_texture *t, t_column *c)
+{
+	double scale;
+	int relative_y;
+	int	i;
+	t_mlx *mlx;
+	int		colour;
+
+	scale = t->height / c->len;
+	i = 0;
+	mlx = &data->mlx;
+	while (c->start.y + i < 0)
+		i++;
+	while (i < c->len)
+	{
+		relative_y = (int)(i / c->len);
+		colour = get_colour_texture(t, (int)(t->width * scale), relative_y);
+		set_pixel(mlx, c->start.x, c->start.y + i, colour);
+		i++;
+	}
 }

@@ -44,6 +44,20 @@ static t_heading get_wall_side(t_ray *ray, t_player *player)
 	}
 }
 
+static double get_relative_hit(t_ray *ray)
+{
+	if (ray->face == NORTH)
+		return(1 - (fmod(ray->hit_pos.x, 1)));
+	if (ray->face == SOUTH)
+		return(fmod(ray->hit_pos.x, 1));
+	if (ray->face == EAST)
+		return(fmod(ray->hit_pos.y, 1));
+	if (ray->face == WEST)
+		return(1 - (fmod(ray->hit_pos.y, 1)));
+	else
+		return (0);
+}
+
 void draw_floor_ceiling(t_data *data)
 {
 	t_ivec2 origin;
@@ -58,6 +72,17 @@ void draw_floor_ceiling(t_data *data)
 	draw_box(&data->mlx, origin, size, data->map.ceiling_color);
 	origin.y += WINDOW_H / 2;
 	draw_box(&data->mlx, origin, size, data->map.floor_color);
+}
+
+void put_texture(t_data *data, t_ray *ray, t_ivec2	p, int len)
+{
+	t_column	col;
+
+	col.start = p;
+	col.len = len;
+	col.hit_pos = ray->relative_hit;
+
+	put_col_texture(data, &data->map.default_texture[ray->face], &col);
 }
 
 void draw_wall(t_data *data, int x, t_ray *ray)
@@ -78,6 +103,8 @@ void draw_wall(t_data *data, int x, t_ray *ray)
 		end = WINDOW_H - 1;
 	p.x = x;
 	p.y = start;
-
-	draw_v_line(&data->mlx, p, end - start, get_wall_colour(get_wall_side(ray, &data->player)));
+	ray->face = get_wall_side(ray, &data->player);
+	ray->relative_hit = get_relative_hit(ray);
+	draw_v_line(&data->mlx, p, end - start, get_wall_colour(ray->face));
+	put_texture(data, ray, p, end - start);
 }

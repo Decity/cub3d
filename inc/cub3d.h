@@ -5,14 +5,15 @@
 ==== System Includes ====
 */
 
-# include <unistd.h>   // read, write, close
-# include <fcntl.h>    // open
-# include <stdio.h>    // printf, perror
-# include <stdlib.h>   // malloc, free, exit
-# include <string.h>   // strerror
-# include <errno.h>    // errno
-# include <math.h>     // math functions
-# include <sys/time.h> // gettimeofday
+# include <unistd.h>	// read, write, close
+# include <fcntl.h>		// open
+# include <stdio.h>		// printf, perror
+# include <stdlib.h>	// malloc, free, exit
+# include <string.h>	// strerror
+# include <errno.h>		// errno
+# include <math.h>		// math functions
+# include <stdint.h>	// uint8 for colours
+# include <sys/time.h>	// gettimeofday
 
 # include <stdbool.h>
 
@@ -62,15 +63,17 @@ typedef	enum e_heading
 
 typedef struct s_ray
 {
-	t_vec2	side_dist;
-	t_vec2	delta_dist;
-	t_vec2	dir;
-	t_vec2	hit_pos;
-	t_ivec2	step;
-	bool	hit;
-	int		side;
-	t_ivec2	map_pos;
-	double	perp_wall_dist;
+	t_vec2		side_dist;
+	t_vec2		delta_dist;
+	t_vec2		dir;
+	t_vec2		hit_pos;
+	t_ivec2		step;
+	bool		hit;
+	double		relative_hit;
+	int			side;
+	t_heading	face;
+	t_ivec2		map_pos;
+	double		perp_wall_dist;
 }	t_ray;
 
 typedef struct s_player
@@ -78,8 +81,21 @@ typedef struct s_player
 	t_vec2	pos;
 	t_vec2	dir;
 	t_vec2	plane;
-	
 }	t_player;
+
+typedef struct s_colour
+{
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+}	t_colour;
+
+typedef struct s_column
+{
+	t_ivec2	start;
+	int		len;
+	double	hit_pos;
+}	t_column;
 
 typedef struct s_texture
 {
@@ -88,7 +104,9 @@ typedef struct s_texture
 	char	*addr;
 	int		width;
 	int		height;
-	int		bpp;
+	int		bit_pp;
+	int		byt_pp;
+	int		line_len;
 	int		endian;
 }	t_texture;
 
@@ -227,5 +245,8 @@ void	cast_rays(t_data *dat);
 void	perform_dda(t_data *data, t_ray *ray, double camera_x);
 void	draw_wall(t_data *data, int x, t_ray *ray);
 void	draw_floor_ceiling(t_data *data);
+
+/* Textures */
+void	put_col_texture(t_data *data, t_texture *t, t_column *c);
 
 #endif
