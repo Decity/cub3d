@@ -36,6 +36,7 @@ void	parse_cub_params(t_data *data, char **lines, int map_start)
 	{
 		default_texture = &data->map.default_texture[i];
 		ft_bzero((void *)default_texture, sizeof(t_texture));
+		i++;
 	}
 	i = 0;
 	while (i < map_start)
