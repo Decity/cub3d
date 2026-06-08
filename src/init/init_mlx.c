@@ -20,3 +20,5 @@ void	init_mlx(t_data *data)
 	if (!data->mlx.addr)
 		error_exit(data, "mlx_get_data_addr failed");
 }
+
+void	destroy

@@ -10,7 +10,7 @@
 	- [x] Draw/flush on refresh/cycle -> not on player movement
 	- [x] Object detection/precedence/occlusion
 	- [x] Camera plane
-	- [ ] Texture mapping
+	- [x] Texture mapping
 	- [x] Floor/Ceiling casting
 
 ## Map
@@ -20,11 +20,15 @@
 	- [x] Continuous movement representation
 	- [x] Continuous rotation
 	- [ ] Calculate how much to rot/mov depending on FPS
-	- [x] Collision detection
+	- [ ] Collision detection
 
 ## Cleanup
 
-	- [] MLX/Textures
+	- [x] MLX/Textures
+sss
+## Check
+
+	- [] Movement
 
 ## Extras
 
