@@ -63,10 +63,7 @@ void	validate_map_block(t_data *data, char **lines, int first, int last)
 	while (i <= last)
 	{
 		if (!is_map_line(lines[i]))
-		{
-			printf("%s\n", lines[i]);
 			error_exit(data, "blank or invalid line inside map");
-		}
 		i++;
 	}
 	i = last + 1;
