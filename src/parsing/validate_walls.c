@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_walls.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 11:23:54 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /**
@@ -21,8 +33,8 @@ static bool	is_walkable(char c)
 }
 
 /**
- * @brief true if the given tile is out of bounds or a space tile (ie not accessible).
- *
+ * @brief true if the given tile is out of bounds or a space tile (ie not 
+ * accessible). 
  */
 static bool	is_leaking_tile(t_map *m, int x, int y)
 {

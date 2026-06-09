@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map_data.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 11:21:03 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /* returns thicccest len in the map */
@@ -11,7 +23,7 @@ static int	get_width(char **lines, int start, int height)
 	w = 0;
 	while (i < height)
 	{
-		len = ft_strlen(lines[start + i]); // lines[start] = start of map
+		len = ft_strlen(lines[start + i]);
 		if ((int)len > w)
 			w = (int)len;
 		i++;
@@ -37,7 +49,8 @@ static void	fill_row(char *dst, const char *row, int width)
 /**
  * @brief allocates the grid and copies every map line into it.
  *
- * Each row is copied then padded on the right with spaces so the grid stays rectangular.
+ * Each row is copied then padded on the right with spaces so the 
+ * grid stays rectangular.
  */
 static void	get_map_grid(t_data *data, char **lines, int start)
 {

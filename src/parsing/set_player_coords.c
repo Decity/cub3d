@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_player_coords.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 11:19:54 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	set_dir(t_vec2 *dir, char c)
@@ -24,11 +36,10 @@ static void	set_dir(t_vec2 *dir, char c)
 	}
 }
 
-static void init_camera_plane(t_data *data)
+static void	init_camera_plane(t_data *data)
 {
-	data->player.plane.x = - data->player.dir.y * FOV;
+	data->player.plane.x = -data->player.dir.y * FOV;
 	data->player.plane.y = data->player.dir.x * FOV;
-
 }
 
 static void	set_player_data(t_data *data, int x, int y)

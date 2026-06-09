@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_bounds.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 11:19:54 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /* True if line contains only map chars (0/1/N/S/E/W/space)
@@ -30,7 +42,6 @@ void	get_map_bounds(t_data *data, char **lines, int *first, int *last)
 	i = 0;
 	while (lines[i])
 	{
-		//printf("line %d, [%zu]: |%s|\n", i, ft_strlen(lines[i]), lines[i]);
 		if (is_map_line(lines[i]))
 		{
 			if (*first == -1)
