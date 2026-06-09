@@ -34,6 +34,7 @@ char	*read_file(t_data *data, const char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_exit(data, strerror(errno));
+	data->fd = fd;
 	out = ft_strdup("");
 	if (!out)
 		error_exit(data, "memory allocation failed");
@@ -44,5 +45,6 @@ char	*read_file(t_data *data, const char *path)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	data->fd = -1;
 	return (out);
 }

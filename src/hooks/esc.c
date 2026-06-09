@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   esc.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 14:59:19 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 14:59:25 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	close_window(t_data *data)
 {
-	if (data->mlx.win)
-		mlx_destroy_window(data->mlx.p_mlx, data->mlx.win);
+	clean_up(data);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

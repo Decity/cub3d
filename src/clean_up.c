@@ -1,10 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean_up.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 11:29:39 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 11:40:15 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
+/* Destroys mlx image, window and display. Guards against NULL handles. */
+static void	free_mlx(t_data *data)
+{
+	if (!data->mlx.p_mlx)
+		return ;
+	if (data->mlx.img)
+		mlx_destroy_image(data->mlx.p_mlx, data->mlx.img);
+	if (data->mlx.win)
+		mlx_destroy_window(data->mlx.p_mlx, data->mlx.win);
+	mlx_destroy_display(data->mlx.p_mlx);
+	free(data->mlx.p_mlx);
+	data->mlx.img = NULL;
+	data->mlx.win = NULL;
+	data->mlx.p_mlx = NULL;
+}
 
 /* Frees t_data. NULLs freed values */
 int	clean_up(t_data *data)
 {
 	if (!data)
 		return (SUCCESS);
+	if (data->fd >= 0)
+		close(data->fd);
+	free_mlx(data);
 	free_cub_content(data->cub_content);
 	data->cub_content = NULL;
 	free(data->map.textures.north);
@@ -19,7 +50,3 @@ int	clean_up(t_data *data)
 	data->map.grid = NULL;
 	return (SUCCESS);
 }
-
-
-
-

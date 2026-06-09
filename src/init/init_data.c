@@ -16,6 +16,7 @@
 void	init_data(t_data *data)
 {
 	ft_bzero(data, sizeof(*data));
+	data->fd = -1;
 	data->map.floor_color = -1;
 	data->map.ceiling_color = -1;
 }
