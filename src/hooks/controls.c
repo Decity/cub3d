@@ -35,6 +35,5 @@ int	on_key(int keycode, t_data *data)
 		rotate_player_c(player, LEFT);
 	else if (keycode == KEY_E || keycode == KEY_RIGHT)
 		rotate_player_c(player, RIGHT);
-	render(data);
 	return (0);
 }
