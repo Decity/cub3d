@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 11:34:38 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 11:35:25 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	init_mlx(t_data *data)
@@ -5,7 +17,8 @@ void	init_mlx(t_data *data)
 	data->mlx.p_mlx = mlx_init();
 	if (!data->mlx.p_mlx)
 		error_exit(data, "mlx_init failed");
-	data->mlx.win = mlx_new_window(data->mlx.p_mlx, WINDOW_W, WINDOW_H, "cub3D");
+	data->mlx.win = mlx_new_window(data->mlx.p_mlx, WINDOW_W, WINDOW_H,
+			"cub3D");
 	if (!data->mlx.win)
 		error_exit(data, "mlx_new_window failed");
 	data->mlx.img = mlx_new_image(data->mlx.p_mlx, WINDOW_W, WINDOW_H);

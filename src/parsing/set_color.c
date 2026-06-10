@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_color.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 11:23:00 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /* Basically atoi. errors if not digit immediately (ie negative val)*/
@@ -27,7 +39,8 @@ static int	parse_byte(t_data *data, const char **s)
  * Skips the identifier (F/C) and spaces, reads R, G, B separated by
  * a single comma each. 
  * 
- * Errors on missing commas, missing digits, incorrect values, or any trailing characters .
+ * Errors on missing commas, missing digits, incorrect values, or any 
+ * trailing characters.
  */
 static int	parse_color_value(t_data *data, const char *line)
 {
@@ -45,7 +58,7 @@ static int	parse_color_value(t_data *data, const char *line)
 	if (*line++ != ',')
 		error_exit(data, "invalid color format");
 	b = parse_byte(data, &line);
-	if (*line) // checks for any char after the final value
+	if (*line)
 		error_exit(data, "invalid color format");
 	return ((r << 16) | (g << 8) | b);
 }

@@ -2,6 +2,9 @@
 cub3D
 lib/minilibx-linux/test/mlx-test
 
+# Editor
+.vscode/
+
 # Prerequisites
 *.d
 

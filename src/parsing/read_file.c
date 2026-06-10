@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_file.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 11:19:54 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static char	*append_line(t_data *data, char *out, char *line)
@@ -22,6 +34,7 @@ char	*read_file(t_data *data, const char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_exit(data, strerror(errno));
+	data->fd = fd;
 	out = ft_strdup("");
 	if (!out)
 		error_exit(data, "memory allocation failed");
@@ -32,5 +45,6 @@ char	*read_file(t_data *data, const char *path)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	data->fd = -1;
 	return (out);
 }

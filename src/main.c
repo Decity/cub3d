@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/09 11:09:22 by elie              #+#    #+#             */
+/*   Updated: 2026/06/09 11:10:55 by elie             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /* Checks argv count and that the scene file has the .cub extension. */
@@ -17,7 +29,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	init_data(&data);
-	validate_args(&data, argc, argv); // validate_args after init so exit_error can be called
+	validate_args(&data, argc, argv);
 	parse(&data, argv[1]);
 	init_mlx(&data);
 	run(&data);

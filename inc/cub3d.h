@@ -118,6 +118,7 @@ typedef struct s_data
 {
 	t_mlx		mlx;
 	char		**cub_content;
+	int			fd;
 	t_map		map;
 	t_player	player;
 }	t_data;
