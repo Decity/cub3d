@@ -99,6 +99,13 @@ typedef struct s_map
 	t_textures	textures;
 }	t_map;
 
+typedef struct s_fps
+{
+	long	last_ms;
+	int		frames;
+	int		display_value;
+}	t_fps;
+
 typedef struct s_mlx
 {
 	void	*p_mlx;
@@ -121,6 +128,7 @@ typedef struct s_data
 	int			fd;
 	t_map		map;
 	t_player	player;
+	t_fps		fps;
 }	t_data;
 
 /* ==== Function Prototypes ==== */
@@ -203,6 +211,9 @@ int		close_window(t_data *data);
 
 /* render.c */
 int		render(t_data *data);
+
+/* render/fps.c */
+void	draw_fps(t_data *data);
 
 /* render/draw_line.c */
 void	draw_line(t_data *data, int *line_start, int *line_end, int colour);
