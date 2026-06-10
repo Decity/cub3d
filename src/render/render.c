@@ -94,5 +94,6 @@ int	render(t_data *data)
 	draw_floor_ceiling(data);
 	cast_rays(data);
 	mlx_put_image_to_window(mlx->p_mlx, mlx->win, mlx->img, 0, 0);
+	draw_fps(data);
 	return (SUCCESS);
 }
