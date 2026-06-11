@@ -17,8 +17,6 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	init_mlx(&data);
-	return (EXIT_SUCCESS);
-
 	init_data(&data);
 	validate_args(&data, argc, argv); // validate_args after init so exit_error can be called
 	init_mlx(&data);
