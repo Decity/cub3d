@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:34:38 by elie              #+#    #+#             */
-/*   Updated: 2026/06/11 15:49:19 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/11 16:39:43 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_mlx(t_data *data)
 			&data->mlx.screen.line_len,
 			&data->mlx.screen.endian
 			);
+	data->mlx.screen.byt_pp = data->mlx.screen.bit_pp / 8;
 	if (!data->mlx.screen.addr)
 		error_exit(data, "mlx_get_data_addr failed");
 }
