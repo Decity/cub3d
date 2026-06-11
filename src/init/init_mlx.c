@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:34:38 by elie              #+#    #+#             */
-/*   Updated: 2026/06/09 11:35:25 by elie             ###   ########.fr       */
+/*   Updated: 2026/06/11 15:49:19 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@ void	init_mlx(t_data *data)
 			"cub3D");
 	if (!data->mlx.win)
 		error_exit(data, "mlx_new_window failed");
-	data->mlx.img = mlx_new_image(data->mlx.p_mlx, WINDOW_W, WINDOW_H);
-	if (!data->mlx.img)
+	data->mlx.screen.img_pointer = mlx_new_image(data->mlx.p_mlx, WINDOW_W, WINDOW_H);
+	if (!data->mlx.screen.img_pointer)
 		error_exit(data, "mlx_new_image failed");
-	data->mlx.addr = mlx_get_data_addr(
-			data->mlx.img,
-			&data->mlx.bits_p_pixel,
-			&data->mlx.line_len,
-			&data->mlx.endian
+	data->mlx.screen.addr = mlx_get_data_addr(
+			data->mlx.screen.img_pointer,
+			&data->mlx.screen.bit_pp,
+			&data->mlx.screen.line_len,
+			&data->mlx.screen.endian
 			);
-	if (!data->mlx.addr)
+	if (!data->mlx.screen.addr)
 		error_exit(data, "mlx_get_data_addr failed");
 }
 
-void	destroy

@@ -83,13 +83,6 @@ typedef struct s_player
 	t_vec2	plane;
 }	t_player;
 
-typedef struct s_colour
-{
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-}	t_colour;
-
 typedef struct s_column
 {
 	t_ivec2	start;
@@ -97,19 +90,22 @@ typedef struct s_column
 	double	hit_pos;
 }	t_column;
 
-
-// TODO make an image buffer struct, there is repitition between mlx and texture
-typedef struct s_texture
+typedef struct s_img
 {
-	void	*img;
-	char	*path;
+	void	*img_pointer;
 	char	*addr;
-	int		width;
-	int		height;
 	int		bit_pp;
 	int		byt_pp;
 	int		line_len;
 	int		endian;
+	int		width;
+	int		height;
+} t_img;
+
+typedef struct s_texture
+{
+	char	*path;
+	t_img	img;
 }	t_texture;
 
 typedef struct s_map
@@ -133,11 +129,7 @@ typedef struct s_mlx
 {
 	void	*p_mlx;
 	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_p_pixel;
-	int		line_len;
-	int		endian;
+	t_img	screen;
 }	t_mlx;
 
 /*

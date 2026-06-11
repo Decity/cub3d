@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
-/*   Updated: 2026/06/09 11:19:54 by elie             ###   ########.fr       */
+/*   Updated: 2026/06/11 15:52:04 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,23 @@
  */
 static int init_texture(t_data	*data, t_texture *texture)
 {
-	texture->img = mlx_xpm_file_to_image(
+	texture->img.img_pointer = mlx_xpm_file_to_image(
 		data->mlx.p_mlx,
 		texture->path,
-		&texture->width,
-		&texture->height
+		&texture->img.width,
+		&texture->img.height
 	);
-	if (!texture->img)
+	if (!texture->img.img_pointer)
 		return (FAILURE);
-	texture->addr = mlx_get_data_addr(
-		texture->img,
-		&texture->bit_pp,
-		&texture->line_len,
-		&texture->endian
+	texture->img.addr = mlx_get_data_addr(
+		texture->img.img_pointer,
+		&texture->img.bit_pp,
+		&texture->img.line_len,
+		&texture->img.endian
 	);
-	if (!texture->addr)
+	if (!texture->img.addr)
 		return (FAILURE);
-	texture->byt_pp = texture->bit_pp / 8;
+	texture->img.byt_pp = texture->img.bit_pp / 8;
 	return (SUCCESS);
 }
 

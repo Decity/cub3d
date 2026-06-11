@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/30 14:52:51 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/11 14:49:52 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/11 15:00:50 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ void	move_player_dir(t_player *player, t_map *map, double dx, double dy)
 	set_perpendicular_vector(player->dir, &perp_dir);
 	move_vec.x += perp_dir.x * dy;
 	move_vec.y += perp_dir.y * dy;
-	if (!is_wall(pos_x + (int)move_vec.x, pos_y, map))
+	if (!is_wall(pos_x + (int)move_vec.x, pos_y + (int)move_vec.y, map))
+	{
 		player->pos.x += move_vec.x;
-	if (!is_wall(pos_x, pos_y + (int)move_vec.y, map))
 		player->pos.y += move_vec.y;
+	}
 }
 
 /**

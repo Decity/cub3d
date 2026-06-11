@@ -3,7 +3,7 @@
 
 void clear_mlx_buff(t_mlx *mlx)
 {
-	ft_memset(mlx->addr, 0, WINDOW_H * mlx->line_len);
+	ft_memset(mlx->screen.addr, 0, WINDOW_H * mlx->screen.line_len);
 }
 
 /**
@@ -18,8 +18,8 @@ void set_pixel(t_mlx *mlx, int x, int y, int colour)
 {
 	char	*destination;
 
-	if (x < 0 || x >= WINDOW_W || y < 0 || y >= WINDOW_H) // could use in_bounds but would need to pass t_map
+	if (x < 0 || x >= WINDOW_W || y < 0 || y >= WINDOW_H)
 		return ;
-	destination = mlx->addr + (y * mlx->line_len + x * (mlx->bits_p_pixel / 8)); // store bytes_p_pixel to save one operation/cycle
+	destination = mlx->screen.addr + (y * mlx->screen.line_len + x * (mlx->screen.byt_pp));
 	*(unsigned int *)destination = colour;
 }

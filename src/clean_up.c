@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:29:39 by elie              #+#    #+#             */
-/*   Updated: 2026/06/09 11:40:15 by elie             ###   ########.fr       */
+/*   Updated: 2026/06/11 15:57:31 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	free_mlx(t_data *data)
 {
 	if (!data->mlx.p_mlx)
 		return ;
-	if (data->mlx.img)
-		mlx_destroy_image(data->mlx.p_mlx, data->mlx.img);
+	if (data->mlx.screen.img_pointer)
+		mlx_destroy_image(data->mlx.p_mlx, data->mlx.screen.img_pointer);
 	if (data->mlx.win)
 		mlx_destroy_window(data->mlx.p_mlx, data->mlx.win);
 	mlx_destroy_display(data->mlx.p_mlx);
 	free(data->mlx.p_mlx);
-	data->mlx.img = NULL;
+	data->mlx.screen.img_pointer = NULL;
 	data->mlx.win = NULL;
 	data->mlx.p_mlx = NULL;
 }

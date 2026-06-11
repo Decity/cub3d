@@ -86,14 +86,10 @@ int	render(t_data *data)
 	t_mlx	*mlx;
 
 	mlx = &data->mlx;
-	//mlx_clear_window(mlx->p_mlx, mlx->win); // Check: redundant?
 	clear_mlx_buff(mlx);
-	//draw_map(data);
-	//draw_player(data);
-	//draw_dir(data);
 	draw_floor_ceiling(data);
 	cast_rays(data);
-	mlx_put_image_to_window(mlx->p_mlx, mlx->win, mlx->img, 0, 0);
+	mlx_put_image_to_window(mlx->p_mlx, mlx->win, mlx->screen.img_pointer, 0, 0);
 	draw_fps(data);
 	return (SUCCESS);
 }
