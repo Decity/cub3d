@@ -122,6 +122,13 @@ typedef struct s_map
 	t_texture	default_texture[4];
 }	t_map;
 
+typedef struct s_fps
+{
+	long	last_ms;
+	int		frames;
+	int		display_value;
+}	t_fps;
+
 typedef struct s_mlx
 {
 	void	*p_mlx;
@@ -141,8 +148,10 @@ typedef struct s_data
 {
 	t_mlx		mlx;
 	char		**cub_content;
+	int			fd;
 	t_map		map;
 	t_player	player;
+	t_fps		fps;
 }	t_data;
 
 /* ==== Function Prototypes ==== */
@@ -226,6 +235,9 @@ int		close_window(t_data *data);
 /* render.c */
 int		render(t_data *data);
 
+/* render/fps.c */
+void	draw_fps(t_data *data);
+
 /* render/draw_line.c */
 void	draw_line(t_data *data, int *line_start, int *line_end, int colour);
 void	draw_line_ivec(t_data *data, t_ivec2 start, t_ivec2 end, int colour);
@@ -239,7 +251,6 @@ int		clean_up(t_data *data);
 /* movement.c */
 void	rotate_player_c(t_player *player, int side);
 void	rotate_matrix(t_vec2 *mat, double rot);
-void	move_player_c(t_player *player, t_map *map, double dx, double dy);
 void	move_player_dir(t_player *player, t_map *map, double dx, double dy);
 
 /* raycast/raycast.c */

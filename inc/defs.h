@@ -23,6 +23,16 @@
 # define COLOR_PLAYER 0xFFFF00
 # define COLOR_WHITE  0xFFFFFF
 # define COLOR_TEAL  0x00FFFF
+# define COLOR_RED    0xFF0000
+# define COLOR_GREEN  0x00FF00
+# define COLOR_BLUE   0x0000FF
+# define COLOR_AMBER  0xFFBF00
+# define COLOR_GREY_LIGHT  0xCCCCCC
+# define COLOR_GREY_MEDIUM 0x808080
+# define COLOR_GREY_DARK   0x404040
+
+/* FPS counter */
+# define ONE_SECOND_IN_MS 1000
 
 /* Rendering */
 //# define BITS_PER_PIXEL 32 // experimenting with dynamic value

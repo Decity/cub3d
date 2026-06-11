@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   controls.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/11 11:37:38 by elie              #+#    #+#             */
+/*   Updated: 2026/06/11 14:51:04 by crabin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	on_key(int keycode, t_data *data)
@@ -8,37 +20,22 @@ int	on_key(int keycode, t_data *data)
 
 	player = &data->player;
 	map = &data->map;
-	
 	move.x = 0;
 	move.y = 0;
 	if (keycode == KEY_ESC)
 		close_window(data);
 	if (keycode == KEY_W)
-	{
-		//printf("W\n");
 		move.x += MOV_SPEED;
-	}
 	if (keycode == KEY_S)
-	{
-		//printf("S\n");
 		move.x += -MOV_SPEED;
-	}
 	if (keycode == KEY_A)
-	{
-		//printf("A\n");
-		move.y += - MOV_SPEED;
-	}
+		move.y += -MOV_SPEED;
 	if (keycode == KEY_D)
-	{
-		//printf("D\n");
 		move.y += MOV_SPEED;
-	}
 	move_player_dir(player, map, move.x, move.y);
-
 	if (keycode == KEY_Q || keycode == KEY_LEFT)
 		rotate_player_c(player, LEFT);
 	else if (keycode == KEY_E || keycode == KEY_RIGHT)
 		rotate_player_c(player, RIGHT);
-	render(data);
 	return (0);
 }
