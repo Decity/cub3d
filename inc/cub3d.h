@@ -228,7 +228,6 @@ int		clean_up(t_data *data);
 /* movement.c */
 void	rotate_player_c(t_player *player, int side);
 void	rotate_matrix(t_vec2 *mat, double rot);
-void	move_player_c(t_player *player, t_map *map, double dx, double dy);
 void	move_player_dir(t_player *player, t_map *map, double dx, double dy);
 
 /* raycast/raycast.c */
