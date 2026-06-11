@@ -47,8 +47,8 @@ void	rotate_matrix(t_vec2 *mat, double rot)
 	const double	old_x = mat->x;
 	const double	old_y = mat->y;
 
-	mat->x = mat->x * cos(rot) - mat->y * sin(rot);
-	mat->y = old_x * sin(rot) + mat->y * cos(rot);
+	mat->x = old_x * cos(rot) - old_y * sin(rot);
+	mat->y = old_x * sin(rot) + old_y * cos(rot);
 }
 
 /**
