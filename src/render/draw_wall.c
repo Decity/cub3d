@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 13:26:55 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/03 20:35:50 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/11 16:57:00 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,5 @@ void draw_wall(t_data *data, int x, t_ray *ray)
 	p.y = start;
 	ray->face = get_wall_side(ray, &data->player);
 	ray->relative_hit = get_relative_hit(ray);
-	draw_v_line(&data->mlx, p, end - start, get_wall_colour(ray->face));
 	put_texture(data, ray, p, end - start);
 }

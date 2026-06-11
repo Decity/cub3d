@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cub_params.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
-/*   Updated: 2026/06/09 11:19:54 by elie             ###   ########.fr       */
+/*   Updated: 2026/06/11 16:52:11 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /* Checks if every required paramater has been assigned. */
-// static void	check_for_missing_params(t_data *data)
-// {
-// 	if (!data->map.textures.north)
-// 		error_exit(data, "missing north texture");
-// 	if (!data->map.textures.south)
-// 		error_exit(data, "missing south texture");
-// 	if (!data->map.textures.west)
-// 		error_exit(data, "missing west texture");
-// 	if (!data->map.textures.east)
-// 		error_exit(data, "missing east texture");
-// 	if (data->map.floor_color == -1)
-// 		error_exit(data, "missing floor color");
-// 	if (data->map.ceiling_color == -1)
-// 		error_exit(data, "missing ceiling color");
-// }
+static void	check_for_missing_params(t_data *data)
+{
+	if (!data->map.default_texture[NORTH].img.addr)
+		error_exit(data, "missing north texture");
+	if (!data->map.default_texture[SOUTH].img.addr)
+		error_exit(data, "missing south texture");
+	if (!data->map.default_texture[WEST].img.addr)
+		error_exit(data, "missing west texture");
+	if (!data->map.default_texture[EAST].img.addr)
+		error_exit(data, "missing east texture");
+	if (data->map.floor_color == -1)
+		error_exit(data, "missing floor color");
+	if (data->map.ceiling_color == -1)
+		error_exit(data, "missing ceiling color");
+}
 
 /**
  * @brief parses the parameters in the ".cub" file.
@@ -61,5 +61,5 @@ void	parse_cub_params(t_data *data, char **lines, int map_start)
 		}
 		i++;
 	}
-	//check_for_missing_params(data); // TODO commenting out pending texture revamp
+	check_for_missing_params(data);
 }

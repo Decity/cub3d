@@ -87,6 +87,7 @@ typedef struct s_column
 {
 	t_ivec2	start;
 	int		len;
+	int		true_len;
 	double	hit_pos;
 }	t_column;
 
