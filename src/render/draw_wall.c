@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 13:26:55 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/12 14:44:21 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 15:13:14 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,12 @@ void draw_wall(t_data *data, int x, t_ray *ray)
 		ray->perp_wall_dist = EPSILON;
 	col.true_len = (int)(WINDOW_H / ray->perp_wall_dist);
 	start = - col.true_len / 2 + WINDOW_H / 2;
-	// if (start < 0)
-	// 	start = 0;
+	if (start < 0)
+		start = 0;
 	end = col.true_len / 2 + WINDOW_H / 2;
 	col.len = end - start;
-	// if (end >= WINDOW_H)
-	// 	end = WINDOW_H - 1;
+	if (end >= WINDOW_H)
+		end = WINDOW_H - 1;
 	p.x = x;
 	p.y = start;
 	ray->face = get_wall_side(ray, &data->player);
