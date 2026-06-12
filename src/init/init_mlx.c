@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:34:38 by elie              #+#    #+#             */
-/*   Updated: 2026/06/11 16:39:43 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 19:15:59 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	init_mlx(t_data *data)
 			"cub3D");
 	if (!data->mlx.win)
 		error_exit(data, "mlx_new_window failed");
-	data->mlx.screen.img_pointer = mlx_new_image(data->mlx.p_mlx, WINDOW_W, WINDOW_H);
+	data->mlx.screen.img_pointer
+		= mlx_new_image(data->mlx.p_mlx, WINDOW_W, WINDOW_H);
 	if (!data->mlx.screen.img_pointer)
 		error_exit(data, "mlx_new_image failed");
 	data->mlx.screen.addr = mlx_get_data_addr(
@@ -34,4 +35,3 @@ void	init_mlx(t_data *data)
 	if (!data->mlx.screen.addr)
 		error_exit(data, "mlx_get_data_addr failed");
 }
-

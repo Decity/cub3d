@@ -6,18 +6,16 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 15:53:50 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/11 15:40:23 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 19:13:21 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-
-void draw_ray(t_data *data, t_ray *ray)
+void	draw_ray(t_data *data, t_ray *ray)
 {
-	t_ivec2 player;
-	t_ivec2 ray_hit;
+	t_ivec2	player;
+	t_ivec2	ray_hit;
 
 	player.x = data->player.pos.x * TILE_SIZE + TILE_SIZE / 2;
 	player.y = data->player.pos.y * TILE_SIZE + TILE_SIZE / 2;
@@ -35,7 +33,7 @@ void draw_ray(t_data *data, t_ray *ray)
 		// set hit bool
 		// set map_pos
 // track total distance??
-void single_ray(t_data *data, t_ray *ray, double camera_x, int column)
+void	single_ray(t_data *data, t_ray *ray, double camera_x, int column)
 {
 	perform_dda(data, ray, camera_x);
 	draw_wall(data, column, ray);
@@ -49,7 +47,7 @@ void single_ray(t_data *data, t_ray *ray, double camera_x, int column)
 		// determine floor/ceiling scaling
 		// draw result of ray hit to img buffer
 	// iterate
-void cast_rays(t_data *data)
+void	cast_rays(t_data *data)
 {
 	t_ray	ray;
 	double	camera_x;

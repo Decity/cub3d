@@ -6,12 +6,11 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
-/*   Updated: 2026/06/11 15:52:04 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 19:26:37 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 /**
  * @brief 
@@ -22,22 +21,22 @@
  * @param data 
  * @param texture pointer to struct holding texture data
  */
-static int init_texture(t_data	*data, t_texture *texture)
+static int	init_texture(t_data	*data, t_texture *texture)
 {
 	texture->img.img_pointer = mlx_xpm_file_to_image(
-		data->mlx.p_mlx,
-		texture->path,
-		&texture->img.width,
-		&texture->img.height
-	);
+			data->mlx.p_mlx,
+			texture->path,
+			&texture->img.width,
+			&texture->img.height
+			);
 	if (!texture->img.img_pointer)
 		return (FAILURE);
 	texture->img.addr = mlx_get_data_addr(
-		texture->img.img_pointer,
-		&texture->img.bit_pp,
-		&texture->img.line_len,
-		&texture->img.endian
-	);
+			texture->img.img_pointer,
+			&texture->img.bit_pp,
+			&texture->img.line_len,
+			&texture->img.endian
+			);
 	if (!texture->img.addr)
 		return (FAILURE);
 	texture->img.byt_pp = texture->img.bit_pp / 8;
@@ -63,7 +62,6 @@ static void	assign_texture(t_data *data, t_texture *texture, const char *line)
 {
 	if (texture->path != NULL)
 		error_exit(data, "duplicate texture identifier");
-
 	texture->path = get_texture_path(data, line);
 	if (init_texture(data, texture) == FAILURE)
 		error_exit(data, "texture init failed");

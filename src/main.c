@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:09:22 by elie              #+#    #+#             */
-/*   Updated: 2026/06/11 14:48:51 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 19:09:14 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 
 	init_mlx(&data);
 	init_data(&data);
-	validate_args(&data, argc, argv); // validate_args after init so exit_error can be called
+	validate_args(&data, argc, argv);
 	init_mlx(&data);
 	parse(&data, argv[1]);
 	run(&data);

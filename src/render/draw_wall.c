@@ -6,13 +6,13 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 13:26:55 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/12 18:02:59 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 19:25:16 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
-static int get_wall_colour(t_heading heading)
+static int	get_wall_colour(t_heading heading)
 {
 	if (heading == NORTH)
 		return (0x009900);
@@ -26,7 +26,7 @@ static int get_wall_colour(t_heading heading)
 		return (-1);
 }
 
-static t_heading get_wall_side(t_ray *ray, t_player *player)
+static t_heading	get_wall_side(t_ray *ray, t_player *player)
 {
 	if (ray->side == SIDE_EASTWEST)
 	{
@@ -44,44 +44,35 @@ static t_heading get_wall_side(t_ray *ray, t_player *player)
 	}
 }
 
-static double get_relative_hit(t_ray *ray)
+static double	get_relative_hit(t_ray *ray)
 {
 	if (ray->face == NORTH)
-		return(1 - (fmod(ray->hit_pos.x, 1)));
+		return (1 - (fmod(ray->hit_pos.x, 1)));
 	if (ray->face == SOUTH)
-		return(fmod(ray->hit_pos.x, 1));
+		return (fmod(ray->hit_pos.x, 1));
 	if (ray->face == EAST)
-		return(fmod(ray->hit_pos.y, 1));
+		return (fmod(ray->hit_pos.y, 1));
 	if (ray->face == WEST)
-		return(1 - (fmod(ray->hit_pos.y, 1)));
+		return (1 - (fmod(ray->hit_pos.y, 1)));
 	else
 		return (0);
 }
 
-void draw_floor_ceiling(t_data *data)
+void	draw_floor_ceiling(t_data *data)
 {
-	t_ivec2 origin;
-	t_ivec2 size;
+	t_ivec2	origin;
+	t_ivec2	size;
 
 	origin.x = 0;
 	origin.y = 0;
-
 	size.x = WINDOW_W;
 	size.y = WINDOW_H / 2;
-
 	draw_box(&data->mlx, origin, size, data->map.ceiling_color);
 	origin.y += WINDOW_H / 2;
 	draw_box(&data->mlx, origin, size, data->map.floor_color);
 }
 
-void put_texture(t_data *data, t_ray *ray, t_ivec2	p, t_column	*col)
-{
-	col->start = p;
-	col->hit_pos = ray->relative_hit;
-	put_col_texture(data, &data->map.default_texture[ray->face], col);
-}
-
-void draw_wall(t_data *data, int x, t_ray *ray)
+void	draw_wall(t_data *data, int x, t_ray *ray)
 {
 	int			start;
 	int			end;
@@ -91,12 +82,12 @@ void draw_wall(t_data *data, int x, t_ray *ray)
 	if (ray->perp_wall_dist < EPSILON)
 		ray->perp_wall_dist = EPSILON;
 	col.true_len = (int)(WINDOW_H / ray->perp_wall_dist);
-	start = - col.true_len / 2 + WINDOW_H / 2;
-	if (start < 0) // without this get bugs at certain angles/positions
+	start = WINDOW_H / 2 - col.true_len / 2;
+	if (start < 0)
 		start = 0;
 	end = col.true_len / 2 + WINDOW_H / 2;
 	col.len = end - start;
-	if (end >= WINDOW_H) // without this get bugs at certain angles/positions
+	if (end >= WINDOW_H)
 		end = WINDOW_H - 1;
 	p.x = x;
 	p.y = start;

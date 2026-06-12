@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/12 19:28:38 by crabin            #+#    #+#             */
+/*   Updated: 2026/06/12 19:29:36 by crabin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -49,7 +61,7 @@ typedef struct s_ivec2
 ==== Enums ====
 */
 
-typedef	enum e_heading
+typedef enum e_heading
 {
 	NORTH,
 	EAST,
@@ -101,7 +113,7 @@ typedef struct s_img
 	int		endian;
 	int		width;
 	int		height;
-} t_img;
+}	t_img;
 
 typedef struct s_texture
 {
@@ -165,8 +177,8 @@ void	clear_mlx_buff(t_mlx *mlx);
 void	set_pixel(t_mlx *mlx, int x, int y, int colour);
 
 /* helpers/checker.c */
-bool in_bounds(int x, int y, t_map *map);
-bool is_wall(int x, int y, t_map *map);
+bool	in_bounds(int x, int y, t_map *map);
+bool	is_wall(int x, int y, t_map *map);
 
 /* error.c */
 void	error_exit(t_data *data, const char *msg);
@@ -236,7 +248,7 @@ void	draw_line(t_data *data, int *line_start, int *line_end, int colour);
 void	draw_line_ivec(t_data *data, t_ivec2 start, t_ivec2 end, int colour);
 void	draw_v_line(t_mlx *mlx, t_ivec2 p, int len, int colour);
 void	draw_h_line(t_mlx *mlx, t_ivec2 p, int len, int colour);
-void 	draw_box(t_mlx *mlx, t_ivec2 origin, t_ivec2 size, int colour);
+void	draw_box(t_mlx *mlx, t_ivec2 origin, t_ivec2 size, int colour);
 
 /* clean_up.c */
 int		clean_up(t_data *data);
@@ -254,5 +266,5 @@ void	draw_floor_ceiling(t_data *data);
 
 /* Textures */
 void	put_col_texture(t_data *data, t_texture *t, t_column *c);
-
+void	put_texture(t_data *data, t_ray *ray, t_ivec2	p, t_column	*col);
 #endif

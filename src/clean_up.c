@@ -6,13 +6,13 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:29:39 by elie              #+#    #+#             */
-/*   Updated: 2026/06/12 19:04:41 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 19:10:14 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void clean_struct_img(t_data *data, t_img *img)
+static void	clean_struct_img(t_data *data, t_img *img)
 {
 	if (!img || !img->img_pointer)
 		return ;
@@ -20,7 +20,7 @@ static void clean_struct_img(t_data *data, t_img *img)
 	ft_bzero(img, sizeof(*img));
 }
 
-static void clean_struct_texture(t_data *data, t_texture *texture)
+static void	clean_struct_texture(t_data *data, t_texture *texture)
 {
 	free(texture->path);
 	texture->path = NULL;
@@ -28,7 +28,7 @@ static void clean_struct_texture(t_data *data, t_texture *texture)
 	ft_bzero(texture, sizeof(*texture));
 }
 
-static void clean_struct_mlx(t_data *data, t_mlx *mlx)
+static void	clean_struct_mlx(t_data *data, t_mlx *mlx)
 {
 	clean_struct_img(data, &mlx->screen);
 	if (mlx->win)
@@ -41,7 +41,7 @@ static void clean_struct_mlx(t_data *data, t_mlx *mlx)
 	ft_bzero(mlx, sizeof(*mlx));
 }
 
-static void clean_struct_map(t_data *data, t_map *map)
+static void	clean_struct_map(t_data *data, t_map *map)
 {
 	free (map->grid);
 	map->grid = NULL;

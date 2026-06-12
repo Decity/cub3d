@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/12 19:16:20 by crabin            #+#    #+#             */
+/*   Updated: 2026/06/12 19:18:08 by crabin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 void	draw_line(t_data *data, int *line_start, int *line_end, int colour)
 {
@@ -15,12 +26,10 @@ void	draw_line(t_data *data, int *line_start, int *line_end, int colour)
 		return ;
 	dx = (double)(line_end[0] - line_start[0]) / steps;
 	dy = (double)(line_end[1] - line_start[1]) / steps;
-
-
 	i = 0;
 	while (i <= steps)
 	{
-		set_pixel(&data->mlx, 
+		set_pixel(&data->mlx,
 			line_start[0] + (int)(dx * i),
 			line_start[1] + (int)(dy * i),
 			colour);
@@ -30,21 +39,20 @@ void	draw_line(t_data *data, int *line_start, int *line_end, int colour)
 
 void	draw_line_ivec(t_data *data, t_ivec2 start, t_ivec2 end, int colour)
 {
-	int start_arr[2];
-	int end_arr[2];
+	int	start_arr[2];
+	int	end_arr[2];
 
 	start_arr[0] = start.x;
 	start_arr[1] = start.y;
 	end_arr[0] = end.x;
 	end_arr[1] = end.y;
-
-	draw_line(data, start_arr,  end_arr, colour);
-} // think about whether to pass t_vec2 or directly typed t_ivec2
+	draw_line(data, start_arr, end_arr, colour);
+}
 
 void	draw_v_line(t_mlx *mlx, t_ivec2 p, int len, int colour)
 {
 	int	i;
-	int step;
+	int	step;
 
 	i = 0;
 	step = 1;
@@ -60,7 +68,7 @@ void	draw_v_line(t_mlx *mlx, t_ivec2 p, int len, int colour)
 void	draw_h_line(t_mlx *mlx, t_ivec2 p, int len, int colour)
 {
 	int	i;
-	int step;
+	int	step;
 
 	i = 0;
 	step = 1;
@@ -71,4 +79,4 @@ void	draw_h_line(t_mlx *mlx, t_ivec2 p, int len, int colour)
 		set_pixel(mlx, p.x + i, p.y, colour);
 		i += step;
 	}
-} // a bit redundant, but would probably need an extra arg spot to pass h/v direction -> would require additional line struct?
+}
