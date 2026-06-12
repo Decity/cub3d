@@ -3,7 +3,7 @@
 
 /* General */
 # define SUCCESS 0
-# define FAIL 1
+# define FAILURE 1
 
 /* Window Params */
 # define WINDOW_W 1280
@@ -13,7 +13,7 @@
 
 /* Player config */
 # define ROT_SPEED 0.1
-# define MOV_SPEED 0.3
+# define MOV_SPEED 0.15
 # define FOV 0.66
 
 /* Colors */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/30 14:52:51 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/11 11:54:01 by elie             ###   ########.fr       */
+/*   Updated: 2026/06/11 16:42:53 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ void	move_player_dir(t_player *player, t_map *map, double dx, double dy)
 	set_perpendicular_vector(player->dir, &perp_dir);
 	move_vec.x += perp_dir.x * dy;
 	move_vec.y += perp_dir.y * dy;
-	if (!is_wall(pos_x + (int)move_vec.x, pos_y, map))
+	if (!is_wall((int)(pos_x + move_vec.x), (int)(pos_y + move_vec.y), map))
+	{
 		player->pos.x += move_vec.x;
-	if (!is_wall(pos_x, pos_y + (int)move_vec.y, map))
 		player->pos.y += move_vec.y;
+	}
 }
 
 /**

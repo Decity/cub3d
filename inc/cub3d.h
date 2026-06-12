@@ -5,14 +5,15 @@
 ==== System Includes ====
 */
 
-# include <unistd.h>   // read, write, close
-# include <fcntl.h>    // open
-# include <stdio.h>    // printf, perror
-# include <stdlib.h>   // malloc, free, exit
-# include <string.h>   // strerror
-# include <errno.h>    // errno
-# include <math.h>     // math functions
-# include <sys/time.h> // gettimeofday
+# include <unistd.h>	// read, write, close
+# include <fcntl.h>		// open
+# include <stdio.h>		// printf, perror
+# include <stdlib.h>	// malloc, free, exit
+# include <string.h>	// strerror
+# include <errno.h>		// errno
+# include <math.h>		// math functions
+# include <stdint.h>	// uint8 for colours
+# include <sys/time.h>	// gettimeofday
 
 # include <stdbool.h>
 
@@ -62,15 +63,17 @@ typedef	enum e_heading
 
 typedef struct s_ray
 {
-	t_vec2	side_dist;
-	t_vec2	delta_dist;
-	t_vec2	dir;
-	t_vec2	hit_pos;
-	t_ivec2	step;
-	bool	hit;
-	int		side;
-	t_ivec2	map_pos;
-	double	perp_wall_dist;
+	t_vec2		side_dist;
+	t_vec2		delta_dist;
+	t_vec2		dir;
+	t_vec2		hit_pos;
+	t_ivec2		step;
+	bool		hit;
+	double		relative_hit;
+	int			side;
+	t_heading	face;
+	t_ivec2		map_pos;
+	double		perp_wall_dist;
 }	t_ray;
 
 typedef struct s_player
@@ -78,16 +81,33 @@ typedef struct s_player
 	t_vec2	pos;
 	t_vec2	dir;
 	t_vec2	plane;
-	
 }	t_player;
 
-typedef struct s_textures
+typedef struct s_column
 {
-	char		*north;
-	char		*south;
-	char		*west;
-	char		*east;
-}	t_textures;
+	t_ivec2	start;
+	int		len;
+	int		true_len;
+	double	hit_pos;
+}	t_column;
+
+typedef struct s_img
+{
+	void	*img_pointer;
+	char	*addr;
+	int		bit_pp;
+	int		byt_pp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+} t_img;
+
+typedef struct s_texture
+{
+	char	*path;
+	t_img	img;
+}	t_texture;
 
 typedef struct s_map
 {
@@ -96,7 +116,7 @@ typedef struct s_map
 	int			height;
 	int			floor_color;
 	int			ceiling_color;
-	t_textures	textures;
+	t_texture	default_texture[4];
 }	t_map;
 
 typedef struct s_fps
@@ -110,11 +130,7 @@ typedef struct s_mlx
 {
 	void	*p_mlx;
 	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_p_pixel;
-	int		line_len;
-	int		endian;
+	t_img	screen;
 }	t_mlx;
 
 /*
@@ -235,5 +251,8 @@ void	cast_rays(t_data *dat);
 void	perform_dda(t_data *data, t_ray *ray, double camera_x);
 void	draw_wall(t_data *data, int x, t_ray *ray);
 void	draw_floor_ceiling(t_data *data);
+
+/* Textures */
+void	put_col_texture(t_data *data, t_texture *t, t_column *c);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:09:22 by elie              #+#    #+#             */
-/*   Updated: 2026/06/09 11:10:55 by elie             ###   ########.fr       */
+/*   Updated: 2026/06/11 14:48:51 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	init_data(&data);
-	validate_args(&data, argc, argv);
-	parse(&data, argv[1]);
 	init_mlx(&data);
+	init_data(&data);
+	validate_args(&data, argc, argv); // validate_args after init so exit_error can be called
+	init_mlx(&data);
+	parse(&data, argv[1]);
 	run(&data);
 	clean_up(&data);
 	return (EXIT_SUCCESS);
