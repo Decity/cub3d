@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 13:26:55 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/11 16:57:00 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 14:44:21 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,36 +74,36 @@ void draw_floor_ceiling(t_data *data)
 	draw_box(&data->mlx, origin, size, data->map.floor_color);
 }
 
-void put_texture(t_data *data, t_ray *ray, t_ivec2	p, int len)
+void put_texture(t_data *data, t_ray *ray, t_ivec2	p, t_column	*col)
 {
-	t_column	col;
+	
 
-	col.start = p;
-	col.len = len;
-	col.hit_pos = ray->relative_hit;
+	col->start = p;
+	col->hit_pos = ray->relative_hit;
 
-	put_col_texture(data, &data->map.default_texture[ray->face], &col);
+	put_col_texture(data, &data->map.default_texture[ray->face], col);
 }
 
 void draw_wall(t_data *data, int x, t_ray *ray)
 {
-	int		line_height;
-	int		start;
-	int		end;
-	t_ivec2	p;
+	int			start;
+	int			end;
+	t_ivec2		p;
+	t_column	col;
 
 	if (ray->perp_wall_dist < EPSILON)
 		ray->perp_wall_dist = EPSILON;
-	line_height = (int)(WINDOW_H / ray->perp_wall_dist);
-	start = - line_height / 2 + WINDOW_H / 2;
-	if (start < 0)
-		start = 0;
-	end = line_height / 2 + WINDOW_H / 2;
-	if (end >= WINDOW_H)
-		end = WINDOW_H - 1;
+	col.true_len = (int)(WINDOW_H / ray->perp_wall_dist);
+	start = - col.true_len / 2 + WINDOW_H / 2;
+	// if (start < 0)
+	// 	start = 0;
+	end = col.true_len / 2 + WINDOW_H / 2;
+	col.len = end - start;
+	// if (end >= WINDOW_H)
+	// 	end = WINDOW_H - 1;
 	p.x = x;
 	p.y = start;
 	ray->face = get_wall_side(ray, &data->player);
 	ray->relative_hit = get_relative_hit(ray);
-	put_texture(data, ray, p, end - start);
+	put_texture(data, ray, p, &col);
 }

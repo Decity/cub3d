@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:16:37 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/11 15:53:00 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 14:35:32 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void put_col_texture(t_data *data, t_texture *t, t_column *c)
 	i = 0;
 	while (c->start.y + i < 0)
 		i++;
-	while (i < c->len)
+	while (i < c->len && i < WINDOW_H - 1)
 	{
 		colour = get_colour_texture(
 				t, 

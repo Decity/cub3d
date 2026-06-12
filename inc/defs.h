@@ -13,7 +13,7 @@
 
 /* Player config */
 # define ROT_SPEED 0.1
-# define MOV_SPEED 0.3
+# define MOV_SPEED 0.15
 # define FOV 0.66
 
 /* Colors */
