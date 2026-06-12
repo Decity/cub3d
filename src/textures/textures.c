@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:16:37 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/12 14:35:32 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 18:12:48 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void put_col_texture(t_data *data, t_texture *t, t_column *c)
 	int		colour;
 
 	mlx = &data->mlx;
-	scale = (double)t->img.height / (double)c->len;
+	scale = (double)t->img.height / (double)c->true_len;
 	if (scale < EPSILON)
 		scale = EPSILON;
 	i = 0;

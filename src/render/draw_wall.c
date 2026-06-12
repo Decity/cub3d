@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 13:26:55 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/12 15:13:14 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 18:02:59 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,8 @@ void draw_floor_ceiling(t_data *data)
 
 void put_texture(t_data *data, t_ray *ray, t_ivec2	p, t_column	*col)
 {
-	
-
 	col->start = p;
 	col->hit_pos = ray->relative_hit;
-
 	put_col_texture(data, &data->map.default_texture[ray->face], col);
 }
 
@@ -95,11 +92,11 @@ void draw_wall(t_data *data, int x, t_ray *ray)
 		ray->perp_wall_dist = EPSILON;
 	col.true_len = (int)(WINDOW_H / ray->perp_wall_dist);
 	start = - col.true_len / 2 + WINDOW_H / 2;
-	if (start < 0)
+	if (start < 0) // without this get bugs at certain angles/positions
 		start = 0;
 	end = col.true_len / 2 + WINDOW_H / 2;
 	col.len = end - start;
-	if (end >= WINDOW_H)
+	if (end >= WINDOW_H) // without this get bugs at certain angles/positions
 		end = WINDOW_H - 1;
 	p.x = x;
 	p.y = start;

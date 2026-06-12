@@ -6,26 +6,50 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:29:39 by elie              #+#    #+#             */
-/*   Updated: 2026/06/11 15:57:31 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/12 19:04:41 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* Destroys mlx image, window and display. Guards against NULL handles. */
-static void	free_mlx(t_data *data)
+static void clean_struct_img(t_data *data, t_img *img)
 {
-	if (!data->mlx.p_mlx)
+	if (!img || !img->img_pointer)
 		return ;
-	if (data->mlx.screen.img_pointer)
-		mlx_destroy_image(data->mlx.p_mlx, data->mlx.screen.img_pointer);
-	if (data->mlx.win)
+	mlx_destroy_image(data->mlx.p_mlx, img->img_pointer);
+	ft_bzero(img, sizeof(*img));
+}
+
+static void clean_struct_texture(t_data *data, t_texture *texture)
+{
+	free(texture->path);
+	texture->path = NULL;
+	clean_struct_img(data, &texture->img);
+	ft_bzero(texture, sizeof(*texture));
+}
+
+static void clean_struct_mlx(t_data *data, t_mlx *mlx)
+{
+	clean_struct_img(data, &mlx->screen);
+	if (mlx->win)
 		mlx_destroy_window(data->mlx.p_mlx, data->mlx.win);
-	mlx_destroy_display(data->mlx.p_mlx);
+	mlx->win = NULL;
+	if (mlx->p_mlx)
+		mlx_destroy_display(data->mlx.p_mlx);
 	free(data->mlx.p_mlx);
-	data->mlx.screen.img_pointer = NULL;
-	data->mlx.win = NULL;
 	data->mlx.p_mlx = NULL;
+	ft_bzero(mlx, sizeof(*mlx));
+}
+
+static void clean_struct_map(t_data *data, t_map *map)
+{
+	free (map->grid);
+	map->grid = NULL;
+	clean_struct_texture(data, &map->default_texture[NORTH]);
+	clean_struct_texture(data, &map->default_texture[SOUTH]);
+	clean_struct_texture(data, &map->default_texture[EAST]);
+	clean_struct_texture(data, &map->default_texture[WEST]);
+	ft_bzero(map, sizeof(*map));
 }
 
 /* Frees t_data. NULLs freed values */
@@ -35,18 +59,10 @@ int	clean_up(t_data *data)
 		return (SUCCESS);
 	if (data->fd >= 0)
 		close(data->fd);
-	free_mlx(data);
 	free_cub_content(data->cub_content);
 	data->cub_content = NULL;
-	// free(data->map.textures.north); // TODO
-	// free(data->map.textures.south); // Sorry switched up textures
-	// free(data->map.textures.east); // will make a cleanup for that struct
-	// free(data->map.textures.west);
-	// data->map.textures.north = NULL;
-	// data->map.textures.south = NULL;
-	// data->map.textures.east = NULL;
-	// data->map.textures.west = NULL;
-	free(data->map.grid);
-	data->map.grid = NULL;
+	clean_struct_map(data, &data->map);
+	clean_struct_mlx(data, &data->mlx);
+	ft_bzero(data, sizeof(*data));
 	return (SUCCESS);
 }
