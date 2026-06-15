@@ -244,9 +244,6 @@ int		render(t_data *data);
 void	draw_fps(t_data *data);
 
 /* render/draw_line.c */
-void	draw_line(t_data *data, int *line_start, int *line_end, int colour);
-void	draw_line_ivec(t_data *data, t_ivec2 start, t_ivec2 end, int colour);
-void	draw_v_line(t_mlx *mlx, t_ivec2 p, int len, int colour);
 void	draw_h_line(t_mlx *mlx, t_ivec2 p, int len, int colour);
 void	draw_box(t_mlx *mlx, t_ivec2 origin, t_ivec2 size, int colour);
 
@@ -265,6 +262,5 @@ void	draw_wall(t_data *data, int x, t_ray *ray);
 void	draw_floor_ceiling(t_data *data);
 
 /* Textures */
-void	put_col_texture(t_data *data, t_texture *t, t_column *c);
 void	put_texture(t_data *data, t_ray *ray, t_ivec2	p, t_column	*col);
 #endif

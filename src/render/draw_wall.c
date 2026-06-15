@@ -12,20 +12,6 @@
 
 #include "cub3d.h"
 
-static int	get_wall_colour(t_heading heading)
-{
-	if (heading == NORTH)
-		return (0x009900);
-	if (heading == EAST)
-		return (0x006600);
-	if (heading == SOUTH)
-		return (0x4C9900);
-	if (heading == WEST)
-		return (0x999900);
-	else
-		return (-1);
-}
-
 static t_heading	get_wall_side(t_ray *ray, t_player *player)
 {
 	if (ray->side == SIDE_EASTWEST)
