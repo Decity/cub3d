@@ -1,7 +1,7 @@
 NAME		= cub3D
 
 CC			= cc
-CFLAGS		= -g -Wall -Wextra #-Werror
+CFLAGS		= -Wall -Wextra -Werror
 
 SRC_DIR		= src
 OBJ_DIR		= obj
@@ -9,7 +9,37 @@ INC_DIR		= inc
 MLX_DIR		= lib/minilibx-linux
 LIBFT_DIR	= lib/libft
 
-SRCS		= $(shell find $(SRC_DIR) -name '*.c') # TODO: replace wildcard
+SRCS		= $(SRC_DIR)/main.c \
+			  $(SRC_DIR)/run.c \
+			  $(SRC_DIR)/error.c \
+			  $(SRC_DIR)/clean_up.c \
+			  $(SRC_DIR)/helpers/checker.c \
+			  $(SRC_DIR)/helpers/cub_split.c \
+			  $(SRC_DIR)/helpers/mlx_helper.c \
+			  $(SRC_DIR)/hooks/controls.c \
+			  $(SRC_DIR)/hooks/esc.c \
+			  $(SRC_DIR)/init/init_data.c \
+			  $(SRC_DIR)/init/init_mlx.c \
+			  $(SRC_DIR)/movement/movement.c \
+			  $(SRC_DIR)/parsing/map_bounds.c \
+			  $(SRC_DIR)/parsing/parse.c \
+			  $(SRC_DIR)/parsing/parse_chars.c \
+			  $(SRC_DIR)/parsing/parse_cub_params.c \
+			  $(SRC_DIR)/parsing/parse_map_data.c \
+			  $(SRC_DIR)/parsing/read_file.c \
+			  $(SRC_DIR)/parsing/set_color.c \
+			  $(SRC_DIR)/parsing/set_player_coords.c \
+			  $(SRC_DIR)/parsing/set_texture.c \
+			  $(SRC_DIR)/parsing/validate_map.c \
+			  $(SRC_DIR)/parsing/validate_texture_paths.c \
+			  $(SRC_DIR)/parsing/validate_walls.c \
+			  $(SRC_DIR)/raycast/dda.c \
+			  $(SRC_DIR)/raycast/raycast.c \
+			  $(SRC_DIR)/render/draw_line.c \
+			  $(SRC_DIR)/render/draw_wall.c \
+			  $(SRC_DIR)/render/fps.c \
+			  $(SRC_DIR)/render/render.c \
+			  $(SRC_DIR)/textures/textures.c
 OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 MLX			= $(MLX_DIR)/libmlx.a
