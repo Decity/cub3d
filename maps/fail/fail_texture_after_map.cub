@@ -1,6 +1,6 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
+NO ./textures/test/north.xpm
+SO ./textures/test/south.xpm
+WE ./textures/test/west.xpm
 
 F 160,160,160
 C 190,190,190
@@ -10,4 +10,4 @@ C 190,190,190
 1001
 1111
 
-EA ./textures/east.xpm
+EA ./textures/test/east.xpm
