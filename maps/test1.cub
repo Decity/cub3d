@@ -1,7 +1,7 @@
-NO ./textures/test/north.xpm
-SO ./textures/test/south.xpm
-WE ./textures/test/west.xpm
-EA ./textures/test/east.xpm
+NO ./textures/celebs/north.xpm
+SO ./textures/celebs/south.xpm
+WE ./textures/celebs/west.xpm
+EA ./textures/celebs/east.xpm
 
 F 160,160,160
 C 19,19,19
