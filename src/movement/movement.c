@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/30 14:52:51 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/11 16:42:53 by crabin           ###   ########.fr       */
+/*   Updated: 2026/06/16 13:16:26 by elie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,36 @@ void	set_perpendicular_vector(t_vec2 vec, t_vec2 *perp)
 	perp->y = vec.x;
 }
 
+/* Returns the collision radius with or without sign based on vector v. */
+static double	dir_buffer(double v)
+{
+	if (v < 0)
+		return (-COLL_RADIUS);
+	return (COLL_RADIUS);
+}
+
+/**
+ * @brief moves the player, checking each axis separately against the real
+ *	float position so sub-cell offsets are kept. A COLL_RADIUS buffer in the
+ *	direction of travel stops the camera before it touches the wall, and the
+ *	per-axis test lets the player slide along walls instead of sticking.
+ */
 void	move_player_dir(t_player *player, t_map *map, double dx, double dy)
 {
-	t_vec2		move_vec;
-	t_vec2		perp_dir;
-	const int	pos_x = (int)player->pos.x;
-	const int	pos_y = (int)player->pos.y;
+	t_vec2	move_vec;
+	t_vec2	perp_dir;
+	double	buf_x;
+	double	buf_y;
 
-	move_vec.x = player->dir.x * dx;
-	move_vec.y = player->dir.y * dx;
 	set_perpendicular_vector(player->dir, &perp_dir);
-	move_vec.x += perp_dir.x * dy;
-	move_vec.y += perp_dir.y * dy;
-	if (!is_wall((int)(pos_x + move_vec.x), (int)(pos_y + move_vec.y), map))
-	{
+	move_vec.x = player->dir.x * dx + perp_dir.x * dy;
+	move_vec.y = player->dir.y * dx + perp_dir.y * dy;
+	buf_x = player->pos.x + move_vec.x + dir_buffer(move_vec.x);
+	buf_y = player->pos.y + move_vec.y + dir_buffer(move_vec.y);
+	if (!is_wall((int)buf_x, (int)player->pos.y, map))
 		player->pos.x += move_vec.x;
+	if (!is_wall((int)player->pos.x, (int)buf_y, map))
 		player->pos.y += move_vec.y;
-	}
 }
 
 /**
