@@ -6,20 +6,11 @@
 /*   By: elie <elie@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 11:19:54 by elie              #+#    #+#             */
-/*   Updated: 2026/06/09 11:23:54 by elie             ###   ########.fr       */
+/*   Updated: 2026/06/16 11:17:06 by elie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/**
- * tile - An x/y spot
- * walkable - 0
- * wall - 1
- * player tile = N S E or W
- * leak - a spot that is not covered by walls and thus touches inaccessible 
- * 	space
- */
 
 /**
  * @brief true if the tile can be stood on.
