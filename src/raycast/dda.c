@@ -68,9 +68,6 @@ static void	calc_wall_dist(t_ray *ray)
 
 static void	get_hit_dda(t_data *data, t_ray *ray)
 {
-	t_map	map;
-
-	map = data->map;
 	while (ray->hit == NO_HIT)
 	{
 		if (ray->side_dist.x < ray->side_dist.y)

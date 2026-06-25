@@ -28,7 +28,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	init_mlx(&data);
 	init_data(&data);
 	validate_args(&data, argc, argv);
 	init_mlx(&data);

@@ -57,7 +57,8 @@ void	parse_cub_params(t_data *data, char **lines, int map_start)
 		{
 			if (!set_texture(data, lines[i])
 				&& !set_color(data, lines[i]))
-				error_exit(data, "unknown identifier in scene file");
+				error_exit(data, "expected identifier "
+					"(NO/SO/WE/EA/F/C) followed by a space and a value");
 		}
 		i++;
 	}
