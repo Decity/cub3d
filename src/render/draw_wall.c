@@ -69,9 +69,9 @@ void	draw_wall(t_data *data, int x, t_ray *ray)
 		ray->perp_wall_dist = EPSILON;
 	col.true_len = (int)(WINDOW_H / ray->perp_wall_dist);
 	start = WINDOW_H / 2 - col.true_len / 2;
-	if (start < 0)
-		start = 0;
-	end = col.true_len / 2 + WINDOW_H / 2;
+	// if (start < 0) // removing this allows column to start above screen -> desired behaviour
+	// 	start = 0;
+	end = col.true_len / 2 + WINDOW_H / 2; // colunn not rendering properly when zooming in -> some issue with len calc ??
 	col.len = end - start;
 	if (end >= WINDOW_H)
 		end = WINDOW_H - 1;
