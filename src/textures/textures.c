@@ -34,12 +34,12 @@ static void	put_col_texture(t_data *data, t_texture *t, t_column *c)
 
 	mlx = &data->mlx;
 	scale = (double)t->img.height / (double)c->true_len;
-	if (scale < EPSILON)
+	if (scale < EPSILON && scale > 0)
 		scale = EPSILON;
 	i = 0;
 	while (c->start.y + i < 0)
 		i++;
-	while (i < c->len && i < WINDOW_H - 1)
+	while (i < c->true_len && c->start.y + i < WINDOW_H - 1)
 	{
 		colour = get_colour_texture(
 				t,
