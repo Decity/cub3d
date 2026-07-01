@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 17:16:37 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/12 19:27:53 by crabin           ###   ########.fr       */
+/*   Updated: 2026/07/01 12:43:05 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ static char	*get_pix_texture(t_texture *t, int x, int y)
 
 static unsigned int	get_colour_texture(t_texture *t, int x, int y)
 {
-	char	*pixel;
+	char			*pixel;
+	unsigned int	colour;
 
 	pixel = get_pix_texture(t, x, y);
-	return (*(unsigned int *)pixel);
+	colour = *(unsigned int *)pixel;
+	return (colour);
 }
 
 static void	put_col_texture(t_data *data, t_texture *t, t_column *c)

@@ -9,8 +9,6 @@
 		* controls.c      — on_key(), move_player(), rotate_player()
 
 
-
-
 * Movement
 	* Player movement currently triggers rendering, should decouple this
 	* Player movement is binary and exclusive, consider movement/strafing/rotation flags (player struct)

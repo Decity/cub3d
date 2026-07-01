@@ -6,7 +6,7 @@
 /*   By: crabin <crabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 13:26:55 by crabin            #+#    #+#             */
-/*   Updated: 2026/06/12 19:25:16 by crabin           ###   ########.fr       */
+/*   Updated: 2026/07/01 12:52:57 by crabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	draw_wall(t_data *data, int x, t_ray *ray)
 	if (ray->perp_wall_dist < EPSILON)
 		ray->perp_wall_dist = EPSILON;
 	col.true_len = (int)(WINDOW_H / ray->perp_wall_dist);
+	if (col.true_len > MAX_WALL_LEN)
+		col.true_len = MAX_WALL_LEN;
 	start = WINDOW_H / 2 - col.true_len / 2;
 	end = col.true_len / 2 + WINDOW_H / 2;
 	col.len = end - start;
